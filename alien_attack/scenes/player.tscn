@@ -19,3 +19,5 @@ texture = ExtResource("1_rp3hv")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.74846e-07, -4)
 shape = SubResource("RectangleShape2D_7ykav")
+
+[node name="RocketPool" type="Node" parent="."]

@@ -1,11 +1,17 @@
 extends CharacterBody2D
 
 @export var speed: float = 300.0
+@export var rocket_offset: Vector2 = Vector2(75,0)
 
 @onready var collider_size: Vector2 = $CollisionShape2D.shape.get_rect().size
+@onready var rocket_pool:Node = $RocketPool
 
-func _ready():
-	print(collider_size)
+const rocket = preload("res://scenes/rocket.tscn")
+
+func _process(_delta):
+	if Input.is_action_just_pressed("shoot"):
+		shoot(global_position)
+
 
 func _physics_process(_delta):
 	var direction: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -22,7 +28,8 @@ func _physics_process(_delta):
 
 	move_and_slide()
 
-func clamp_to_viewport(player_position: Vector2) -> void:
-	print(player_position)
-	print(get_viewport_rect().size)
-	player_position = player_position.clamp(Vector2(0,0), get_viewport_rect().size)
+func shoot(player_position: Vector2) -> void:
+	if !rocket_pool || !rocket: return
+	var rocket_instance = rocket.instantiate()
+	rocket_pool.add_child(rocket_instance)
+	rocket_instance.global_position = player_position + rocket_offset
