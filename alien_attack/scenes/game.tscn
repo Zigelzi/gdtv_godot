@@ -21,4 +21,3 @@ stretch_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("2_34xcw")]
 position = Vector2(127, 317)
-vertical_speed = 550.0
