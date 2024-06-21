@@ -8,7 +8,7 @@ extends CharacterBody2D
 
 const rocket = preload("res://scenes/rocket.tscn")
 
-func _process(_delta):
+func _process(_delta):	
 	if Input.is_action_just_pressed("shoot"):
 		shoot(global_position)
 
