@@ -2,15 +2,18 @@ extends CharacterBody2D
 
 @export var speed: float = 300.0
 @export var rocket_offset: Vector2 = Vector2(75,0)
+@export var shoot_cooldown:float = 0.5
 
 @onready var collider_size: Vector2 = $CollisionShape2D.shape.get_rect().size
 @onready var rocket_pool:Node = $RocketPool
 
-const rocket = preload("res://scenes/rocket.tscn")
+const rocket:PackedScene = preload("res://scenes/rocket.tscn")
+
+var is_ready_to_shoot:bool = true
 
 func _process(_delta):	
-	if Input.is_action_just_pressed("shoot"):
-		shoot(global_position)
+	if Input.is_action_just_pressed("shoot") && is_ready_to_shoot:
+		shoot(global_position)		
 
 
 func _physics_process(_delta):
@@ -30,6 +33,12 @@ func _physics_process(_delta):
 
 func shoot(player_position: Vector2) -> void:
 	if !rocket_pool || !rocket: return
-	var rocket_instance = rocket.instantiate()
+	var rocket_instance:Node = rocket.instantiate()
 	rocket_pool.add_child(rocket_instance)
 	rocket_instance.global_position = player_position + rocket_offset
+	start_shooting_cooldown()
+
+func start_shooting_cooldown() -> void:
+	is_ready_to_shoot = false
+	await get_tree().create_timer(shoot_cooldown).timeout
+	is_ready_to_shoot = true
