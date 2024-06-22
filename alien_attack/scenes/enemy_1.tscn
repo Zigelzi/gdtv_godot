@@ -9,6 +9,7 @@ height = 104.0
 
 [node name="Enemy" type="Area2D"]
 rotation = -1.5708
+collision_layer = 2
 script = ExtResource("1_1pauf")
 
 [node name="Model" type="Sprite2D" parent="."]
