@@ -1,13 +1,15 @@
 extends CharacterBody2D
 
+signal damage_taken
+
+const _ROCKET: PackedScene = preload ("res://scenes/rocket.tscn")
+
 @export var _speed: float = 300.0
 @export var _rocket_offset: Vector2 = Vector2(75, 0)
 @export var _shoot_cooldown: float = 0.5
 
 @onready var _collider_size: Vector2 = $CollisionShape2D.shape.get_rect().size
 @onready var _rocket_pool: Node = $RocketPool
-
-const _ROCKET: PackedScene = preload ("res://scenes/rocket.tscn")
 
 var _is_ready_to_shoot: bool = true
 
@@ -29,6 +31,9 @@ func _physics_process(_delta):
 	global_position = global_position.clamp(player_offset, get_viewport_rect().size - player_offset)
 
 	move_and_slide()
+
+func take_damage():
+	damage_taken.emit()
 
 func _shoot(player_position: Vector2) -> void:
 	if !_rocket_pool||!_ROCKET: return
