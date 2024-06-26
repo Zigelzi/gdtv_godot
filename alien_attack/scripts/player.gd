@@ -32,7 +32,7 @@ func _physics_process(_delta):
 
 	move_and_slide()
 
-func take_damage():
+func take_damage() -> void:
 	damage_taken.emit()
 
 func _shoot(player_position: Vector2) -> void:

@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://l58fqop4bmue"]
+
+[ext_resource type="FontFile" uid="uid://c2u7hdhoog462" path="res://assets/font/Kenney Blocks.ttf" id="1_irsqk"]
+
+[resource]
+font = ExtResource("1_irsqk")
+font_size = 24

@@ -13,12 +13,12 @@ func _ready():
 func _physics_process(delta):
 	global_position.x -= _speed * delta
 
-func _on_player_body_entered(body: Node2D):
+func _on_player_body_entered(body: Node2D) -> void:
 	if (body.has_method("take_damage")):
 		body.take_damage()
 	die()
 
-func _on_enemy_screen_exited():
+func _on_enemy_screen_exited() -> void:
 	destroy()
 
 func die() -> void:

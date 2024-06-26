@@ -13,7 +13,7 @@ func _ready():
 	_spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	_root_node.game_ended.connect(_on_game_ended)
 
-func _on_spawn_timer_timeout():
+func _on_spawn_timer_timeout() -> void:
 	_spawn_enemy_to_random_spawn_point()
 
 func _spawn_enemy_to_random_spawn_point() -> void:
@@ -22,5 +22,5 @@ func _spawn_enemy_to_random_spawn_point() -> void:
 	_spawned_enemies.add_child(enemy_instance)
 	enemy_instance.global_position = _spawn_positions.pick_random().global_position
 
-func _on_game_ended():
+func _on_game_ended() -> void:
 	_spawn_timer.stop()
