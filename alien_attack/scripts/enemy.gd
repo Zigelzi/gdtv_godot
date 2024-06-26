@@ -16,7 +16,7 @@ func _physics_process(delta):
 func _on_player_body_entered(body: Node2D) -> void:
 	if (body.has_method("take_damage")):
 		body.take_damage()
-	die()
+	destroy()
 
 func _on_enemy_screen_exited() -> void:
 	destroy()

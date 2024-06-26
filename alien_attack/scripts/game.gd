@@ -23,7 +23,7 @@ func _on_player_damage_taken() -> void:
 
 func _end_game() -> void:
 	game_ended.emit()
-	print("Game ended")
+	_player.die()
 
 func _on_enemy_spawn(enemy: Node2D) -> void:
 	enemy.died.connect(_on_enemy_death)

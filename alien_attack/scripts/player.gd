@@ -46,3 +46,6 @@ func _start_shooting_cooldown() -> void:
 	_is_ready_to_shoot = false
 	await get_tree().create_timer(_shoot_cooldown).timeout
 	_is_ready_to_shoot = true
+
+func die() -> void:
+	queue_free()
