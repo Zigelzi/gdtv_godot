@@ -15,9 +15,11 @@ func _ready():
 	_enemy_spawner.enemy_spawned.connect(_on_enemy_spawn)
 
 	_hud.set_score(_current_score)
+	_hud.set_lives(_lives)
 
 func _on_player_damage_taken() -> void:
 	_lives -= 1
+	_hud.set_lives(_lives)
 	if _lives <= 0:
 		_end_game()
 
