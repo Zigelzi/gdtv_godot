@@ -1,6 +1,8 @@
 extends Area2D
 
 signal player_hit
+signal died(reward: int)
+const REWARD_AMOUNT: int = 100
 
 @export var _speed: float = 200.0
 
@@ -17,7 +19,11 @@ func _on_player_body_entered(body: Node2D):
 	die()
 
 func _on_enemy_screen_exited():
-	die()
+	destroy()
 
 func die() -> void:
+	queue_free()
+	died.emit(REWARD_AMOUNT)
+
+func destroy() -> void:
 	queue_free()
