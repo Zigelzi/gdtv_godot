@@ -6,6 +6,8 @@ const REWARD_AMOUNT: int = 100
 
 @export var _speed: float = 200.0
 
+@onready var _hit_sfx_player: AudioStreamPlayer2D = $HitSfxPlayer
+
 func _ready():
 	$".".body_entered.connect(_on_player_body_entered)
 	$VisibleNotifier.screen_exited.connect(_on_enemy_screen_exited)
@@ -22,8 +24,12 @@ func _on_enemy_screen_exited() -> void:
 	destroy()
 
 func die() -> void:
-	queue_free()
 	died.emit(REWARD_AMOUNT)
+	$".".hide()
+	if !_hit_sfx_player: return
+	_hit_sfx_player.play()
+	await _hit_sfx_player.finished
+	queue_free()
 
 func destroy() -> void:
 	queue_free()
