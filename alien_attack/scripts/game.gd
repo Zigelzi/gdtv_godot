@@ -31,6 +31,7 @@ func _end_game() -> void:
 
 func _spawn_game_over_screen() -> void:
 	var game_over_screen_instance: Node = _game_over_screen.instantiate()
+	game_over_screen_instance.set_score(_current_score)
 	$UI.add_child(game_over_screen_instance)
 
 func _on_enemy_spawn(enemy: Node2D) -> void:
