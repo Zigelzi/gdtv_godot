@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhhe2gelp7m54"]
+[gd_scene load_steps=6 format=3 uid="uid://bhhe2gelp7m54"]
 
 [ext_resource type="Texture2D" uid="uid://db8raqn3lqiav" path="res://assets/textures/player_ship.png" id="1_rp3hv"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_u3hgb"]
 [ext_resource type="AudioStream" uid="uid://dqpv1ffb21vgc" path="res://assets/audio/hit.wav" id="3_smdno"]
+[ext_resource type="AudioStream" uid="uid://c3euxhne467hq" path="res://assets/audio/sfx_laser2.wav" id="4_l08yn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ykav"]
 size = Vector2(100, 62)
@@ -23,5 +24,8 @@ shape = SubResource("RectangleShape2D_7ykav")
 
 [node name="RocketPool" type="Node" parent="."]
 
-[node name="PlayerHit" type="AudioStreamPlayer2D" parent="."]
+[node name="HitSfxPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_smdno")
+
+[node name="ShootSfxPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_l08yn")

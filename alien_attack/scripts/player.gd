@@ -10,7 +10,8 @@ const _ROCKET: PackedScene = preload ("res://scenes/rocket.tscn")
 
 @onready var _collider_size: Vector2 = $CollisionShape2D.shape.get_rect().size
 @onready var _rocket_pool: Node = $RocketPool
-@onready var _player_hit_audio: AudioStreamPlayer2D = $PlayerHit
+@onready var _hit_sfx_player: AudioStreamPlayer2D = $HitSfxPlayer
+@onready var _shoot_sfx_player: AudioStreamPlayer2D = $ShootSfxPlayer
 
 var _is_ready_to_shoot: bool = true
 
@@ -35,7 +36,8 @@ func _physics_process(_delta):
 
 func take_damage() -> void:
 	damage_taken.emit()
-	_player_hit_audio.play()
+	if !_hit_sfx_player: return
+	_hit_sfx_player.play()
 
 func _shoot(player_position: Vector2) -> void:
 	if !_rocket_pool||!_ROCKET: return
@@ -43,6 +45,7 @@ func _shoot(player_position: Vector2) -> void:
 	_rocket_pool.add_child(rocket_instance)
 	rocket_instance.global_position = player_position + _rocket_offset
 	_start_shooting_cooldown()
+	_shoot_sfx_player.play()
 
 func _start_shooting_cooldown() -> void:
 	_is_ready_to_shoot = false

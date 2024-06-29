@@ -2,14 +2,15 @@ extends Node2D
 
 signal game_ended
 
+const GAME_OVER_SCREEN: PackedScene = preload ("res://scenes/game_over_screen.tscn")
+
 @export var _lives: int = 3
+
+var _current_score: int = 0
 
 @onready var _player: Node2D = $Player
 @onready var _enemy_spawner: Node2D = $EnemySpawner
 @onready var _hud = $UI/HUD
-
-var _current_score: int = 0
-var _game_over_screen: PackedScene = preload ("res://scenes/game_over_screen.tscn")
 
 func _ready():
 	_player.damage_taken.connect(_on_player_damage_taken)
@@ -30,7 +31,7 @@ func _end_game() -> void:
 	_spawn_game_over_screen()
 
 func _spawn_game_over_screen() -> void:
-	var game_over_screen_instance: Node = _game_over_screen.instantiate()
+	var game_over_screen_instance: Node = GAME_OVER_SCREEN.instantiate()
 	game_over_screen_instance.set_score(_current_score)
 	$UI.add_child(game_over_screen_instance)
 
