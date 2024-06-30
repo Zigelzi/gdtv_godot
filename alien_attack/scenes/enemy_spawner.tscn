@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dk53vjg60e3bq"]
+[gd_scene load_steps=3 format=3 uid="uid://dk53vjg60e3bq"]
 
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="1_56aa8"]
+[ext_resource type="PackedScene" uid="uid://bjnupo1pn34jq" path="res://scenes/enemy_line.tscn" id="2_xwn0w"]
 
 [node name="EnemySpawner" type="Node2D"]
 script = ExtResource("1_56aa8")
+_enemy_types = Array[PackedScene]([ExtResource("2_xwn0w")])
 
 [node name="SpawnPositions" type="Node2D" parent="."]
 

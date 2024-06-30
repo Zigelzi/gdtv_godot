@@ -58,6 +58,7 @@ stream = ExtResource("4_l08yn")
 
 [node name="ThrusterParticles" type="GPUParticles2D" parent="."]
 position = Vector2(0.00011946, 33)
+emitting = false
 amount = 30
 process_material = SubResource("ParticleProcessMaterial_e4mfg")
 lifetime = 0.25

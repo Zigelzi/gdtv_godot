@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ch0ork860l4gg"]
+[gd_scene load_steps=7 format=3 uid="uid://ch0ork860l4gg"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_0eowa"]
 [ext_resource type="Texture2D" uid="uid://dmcf5cvdxyjrp" path="res://assets/textures/bg.png" id="1_fy44m"]
 [ext_resource type="PackedScene" uid="uid://bhhe2gelp7m54" path="res://scenes/player.tscn" id="2_34xcw"]
 [ext_resource type="PackedScene" uid="uid://1hx3lsco5aqm" path="res://scenes/hud.tscn" id="2_mslh4"]
 [ext_resource type="PackedScene" uid="uid://dk53vjg60e3bq" path="res://scenes/enemy_spawner.tscn" id="3_nx4qw"]
+[ext_resource type="PackedScene" uid="uid://bjnupo1pn34jq" path="res://scenes/enemy_line.tscn" id="6_0axku"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_0eowa")
@@ -33,3 +34,6 @@ position = Vector2(127, 317)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_nx4qw")]
 position = Vector2(1380, 0)
+
+[node name="Enemy" parent="." instance=ExtResource("6_0axku")]
+position = Vector2(1070, 340)
