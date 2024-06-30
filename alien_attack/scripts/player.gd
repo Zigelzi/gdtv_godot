@@ -12,6 +12,7 @@ const _ROCKET: PackedScene = preload ("res://scenes/rocket.tscn")
 @onready var _rocket_pool: Node = $RocketPool
 @onready var _hit_sfx_player: AudioStreamPlayer2D = $HitSfxPlayer
 @onready var _shoot_sfx_player: AudioStreamPlayer2D = $ShootSfxPlayer
+@onready var _thruster_particles: GPUParticles2D = $ThrusterParticles
 
 var _is_ready_to_shoot: bool = true
 
@@ -25,8 +26,10 @@ func _physics_process(_delta):
 	if direction:
 		velocity.x = direction.x * _speed
 		velocity.y = direction.y * _speed
+		_thruster_particles.emitting = true
 	else:
 		velocity = Vector2.ZERO
+		_thruster_particles.emitting = false
 
 	# Player is rotated by 90 degrees, so axises are reversed.
 	var player_offset: Vector2 = Vector2(_collider_size.y / 2, _collider_size.x / 2)
