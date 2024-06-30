@@ -20,15 +20,22 @@ func _on_player_body_entered(body: Node2D) -> void:
 	destroy()
 
 func _on_enemy_screen_exited() -> void:
+	if !_hit_sfx_player: return
+	_hit_sfx_player.play()
+	await _hit_sfx_player.finished
 	destroy()
 
 func die() -> void:
 	died.emit(REWARD_AMOUNT)
-	$".".hide()
+	_disable()
 	if !_hit_sfx_player: return
 	_hit_sfx_player.play()
 	await _hit_sfx_player.finished
 	queue_free()
+
+func _disable():
+	$".".hide()
+	$".".monitoring = false
 
 func destroy() -> void:
 	queue_free()
