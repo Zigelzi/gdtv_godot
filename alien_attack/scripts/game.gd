@@ -35,10 +35,9 @@ func _spawn_game_over_screen() -> void:
 	game_over_screen_instance.set_score(_current_score)
 	$UI.add_child(game_over_screen_instance)
 
-func _on_enemy_spawn(enemy: Node2D) -> void:
+func _on_enemy_spawn(enemy: Node) -> void:
 	enemy.died.connect(_on_enemy_death)
 
 func _on_enemy_death(reward_amount: int) -> void:
 	_current_score += reward_amount
 	_hud.set_score(_current_score)
-	

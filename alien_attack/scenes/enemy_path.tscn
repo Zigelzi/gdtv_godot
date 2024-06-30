@@ -1,27 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5xmgw62uvxok"]
+[gd_scene load_steps=4 format=3 uid="uid://cqqv6gxvq3s27"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_o63cc"]
-[ext_resource type="Texture2D" uid="uid://c8ybvth1ql5to" path="res://assets/textures/enemy_ship.png" id="2_oh8pf"]
-[ext_resource type="AudioStream" uid="uid://bix2yhvxjvfr3" path="res://assets/audio/explode.wav" id="3_itrow"]
+[ext_resource type="PackedScene" uid="uid://bjnupo1pn34jq" path="res://scenes/enemy.tscn" id="1_n5idr"]
+[ext_resource type="Script" path="res://scripts/enemy_path.gd" id="1_v5d44"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_krux2"]
-radius = 35.0
-height = 104.0
+[sub_resource type="Curve2D" id="Curve2D_5blnv"]
+_data = {
+"points": PackedVector2Array(569.352, -2.2038, -569.352, 2.2038, 0, 0, 293.562, -2.51984, -293.562, 2.51984, -698, 584, 466.171, 2.51984, -466.171, -2.51984, -1380, 0)
+}
+point_count = 3
 
-[node name="EnemyPath" type="Area2D"]
-rotation = -1.5708
-collision_layer = 2
-script = ExtResource("1_o63cc")
+[node name="EnemyPath" type="Path2D"]
+position = Vector2(1, -2)
+curve = SubResource("Curve2D_5blnv")
+script = ExtResource("1_v5d44")
 
-[node name="Model" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_oh8pf")
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+rotation = 3.13772
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_krux2")
-
-[node name="VisibleNotifier" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(-1.83588e-06, 42)
-
-[node name="HitSfxPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_itrow")
+[node name="Enemy" parent="PathFollow2D" instance=ExtResource("1_n5idr")]
+rotation = 1.5708
+_speed = 0.0

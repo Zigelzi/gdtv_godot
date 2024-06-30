@@ -1,21 +1,21 @@
 [gd_scene load_steps=5 format=3 uid="uid://bjnupo1pn34jq"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_repgf"]
-[ext_resource type="Texture2D" uid="uid://c8ybvth1ql5to" path="res://assets/textures/enemy_ship.png" id="2_w2hty"]
-[ext_resource type="AudioStream" uid="uid://bix2yhvxjvfr3" path="res://assets/audio/explode.wav" id="3_y0w1c"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ubp01"]
+[ext_resource type="Texture2D" uid="uid://c8ybvth1ql5to" path="res://assets/textures/enemy_ship.png" id="2_rwvhh"]
+[ext_resource type="AudioStream" uid="uid://bix2yhvxjvfr3" path="res://assets/audio/explode.wav" id="3_bm6m8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_krux2"]
 radius = 35.0
 height = 104.0
 
-[node name="Enemy_Line" type="Area2D"]
+[node name="Enemy" type="Area2D"]
 rotation = -1.5708
 collision_layer = 2
-script = ExtResource("1_repgf")
+script = ExtResource("1_ubp01")
 
 [node name="Model" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_w2hty")
+texture = ExtResource("2_rwvhh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_krux2")
@@ -24,4 +24,4 @@ shape = SubResource("CapsuleShape2D_krux2")
 position = Vector2(-1.83588e-06, 42)
 
 [node name="HitSfxPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_y0w1c")
+stream = ExtResource("3_bm6m8")

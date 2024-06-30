@@ -18,10 +18,16 @@ func _on_spawn_timer_timeout() -> void:
 
 func _spawn_enemy_to_random_spawn_point() -> void:
 	if _enemy_types.is_empty(): return
-	var enemy_instance: Node = _enemy_types[0].instantiate()
-	enemy_spawned.emit(enemy_instance)
+
+	var enemy_instance: Node = _enemy_types.pick_random().instantiate()
 	_spawned_enemies.add_child(enemy_instance)
-	enemy_instance.global_position = _spawn_positions.pick_random().global_position
+	
+	if enemy_instance.is_class("Path2D"):
+		enemy_spawned.emit(enemy_instance.enemy)
+		enemy_instance.global_position = _spawn_positions[0].global_position
+	if enemy_instance.is_class("Area2D"):
+		enemy_spawned.emit(enemy_instance)
+		enemy_instance.global_position = _spawn_positions.pick_random().global_position
 
 func _on_game_ended() -> void:
 	_spawn_timer.stop()

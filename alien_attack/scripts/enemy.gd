@@ -5,7 +5,6 @@ signal died(reward: int)
 const REWARD_AMOUNT: int = 100
 
 @export var _speed: float = 200.0
-
 @onready var _hit_sfx_player: AudioStreamPlayer2D = $HitSfxPlayer
 
 func _ready():
