@@ -1,10 +1,14 @@
+class_name Enemy
 extends Area2D
 
 signal player_hit
 signal died(reward: int)
+signal destroyed
+
 const REWARD_AMOUNT: int = 100
 
 @export var _speed: float = 200.0
+@export var _destroyed_sfx: PackedScene
 @onready var _hit_sfx_player: AudioStreamPlayer2D = $HitSfxPlayer
 
 func _ready():
@@ -20,17 +24,11 @@ func _on_player_body_entered(body: Node2D) -> void:
 	destroy()
 
 func _on_enemy_screen_exited() -> void:
-	if !_hit_sfx_player: return
-	_hit_sfx_player.play()
-	await _hit_sfx_player.finished
 	destroy()
 
 func die() -> void:
 	died.emit(REWARD_AMOUNT)
-	_disable()
-	if !_hit_sfx_player: return
-	_hit_sfx_player.play()
-	await _hit_sfx_player.finished
+	_spawn_destroy_sfx()
 	queue_free()
 
 func _disable():
@@ -38,4 +36,12 @@ func _disable():
 	$".".monitoring = false
 
 func destroy() -> void:
+	destroyed.emit()
+	_spawn_destroy_sfx()
 	queue_free()
+
+func _spawn_destroy_sfx():
+	if !_destroyed_sfx: return
+	var root_node = $".".get_node("/root/Game")
+	var sfx_instance = _destroyed_sfx.instantiate()
+	root_node.add_child(sfx_instance)

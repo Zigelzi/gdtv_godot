@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dngat2ky2jmwk"]
+
+[ext_resource type="AudioStream" uid="uid://bix2yhvxjvfr3" path="res://assets/audio/explode.wav" id="1_34xyi"]
+[ext_resource type="Script" path="res://scripts/DestroyOnSfxFinished.gd" id="2_4yp0t"]
+
+[node name="EnemyDestroyedSfxPlayer" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_34xyi")
+autoplay = true
+
+[node name="DestroyOnSfxFinished" type="Node" parent="."]
+script = ExtResource("2_4yp0t")

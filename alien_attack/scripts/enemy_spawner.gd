@@ -1,6 +1,7 @@
+class_name EnemySpawner
 extends Node2D
 
-signal enemy_spawned(new_enemy: Node)
+signal enemy_spawned(new_enemy: Enemy)
 
 @export var _enemy_types: Array[PackedScene]
 
