@@ -23,9 +23,10 @@ func _on_player_damage_taken() -> void:
 	_reduce_lives()
 
 func _reduce_lives() -> void:
-	_lives -= 1
-	_hud.set_lives(_lives)
-	if _lives <= 0:
+	if _lives > 0:
+		_lives -= 1
+		_hud.set_lives(_lives)
+	if _lives == 0:
 		_end_game()
 
 func _end_game() -> void:

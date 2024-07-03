@@ -9,7 +9,6 @@ const REWARD_AMOUNT: int = 100
 
 @export var _speed: float = 200.0
 @export var _destroyed_sfx: PackedScene
-@onready var _hit_sfx_player: AudioStreamPlayer2D = $HitSfxPlayer
 
 func _ready():
 	$".".body_entered.connect(_on_player_body_entered)
@@ -21,7 +20,8 @@ func _physics_process(delta):
 func _on_player_body_entered(body: Node2D) -> void:
 	if (body.has_method("take_damage")):
 		body.take_damage()
-	destroy()
+	_spawn_destroy_sfx()
+	queue_free()
 
 func _on_enemy_screen_exited() -> void:
 	destroy()
