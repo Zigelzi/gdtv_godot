@@ -5,6 +5,7 @@ signal game_ended
 const GAME_OVER_SCREEN: PackedScene = preload ("res://scenes/game_over_screen.tscn")
 
 @export var _lives: int = 3
+@export var _difficulty_increase_treshold: int = 500
 
 var _current_score: int = 0
 
@@ -45,6 +46,7 @@ func _on_enemy_spawn(enemy: Enemy) -> void:
 
 func _on_enemy_death(reward_amount: int) -> void:
 	_current_score += reward_amount
+	_enemy_spawner.reduce_spawn_time(_current_score / _difficulty_increase_treshold)
 	_hud.set_score(_current_score)
 
 func _on_enemy_destroyed():
