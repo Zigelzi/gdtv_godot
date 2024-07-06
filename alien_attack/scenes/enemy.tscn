@@ -12,6 +12,7 @@ height = 104.0
 rotation = -1.5708
 collision_layer = 2
 script = ExtResource("1_ubp01")
+_speed = 350.0
 _destroyed_sfx = ExtResource("2_0p3os")
 
 [node name="Model" type="Sprite2D" parent="."]

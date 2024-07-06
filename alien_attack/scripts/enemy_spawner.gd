@@ -32,7 +32,8 @@ func _spawn_enemy_to_random_spawn_point() -> void:
 	
 	if enemy_instance.is_class("Path2D"):
 		enemy_spawned.emit(enemy_instance.enemy)
-		enemy_instance.global_position = _spawn_positions[0].global_position
+		var spawn_position_index = randi_range(0, _spawn_positions.size() - 3)
+		enemy_instance.global_position = _spawn_positions[spawn_position_index].global_position
 	if enemy_instance.is_class("Area2D"):
 		enemy_spawned.emit(enemy_instance)
 		enemy_instance.global_position = _spawn_positions.pick_random().global_position

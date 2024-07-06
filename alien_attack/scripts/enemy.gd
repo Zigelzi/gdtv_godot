@@ -41,7 +41,7 @@ func destroy() -> void:
 	queue_free()
 
 func _spawn_destroy_sfx():
-	if !_destroyed_sfx: return
-	var root_node = $".".get_node("/root/Game")
+	var root_node = $".".get_node_or_null("/root/Game")
+	if !_destroyed_sfx||!root_node: return
 	var sfx_instance = _destroyed_sfx.instantiate()
 	root_node.add_child(sfx_instance)
