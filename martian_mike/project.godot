@@ -1,0 +1,28 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="GDTV - Martian Mike"
+run/main_scene="res://scenes/level.tscn"
+config/features=PackedStringArray("4.2", "Forward Plus")
+config/icon="res://assets/icon.svg"
+
+[display]
+
+window/size/viewport_width=495
+window/size/viewport_height=270
+window/size/window_width_override=1485
+window/size/window_height_override=810
+window/stretch/mode="canvas_items"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
