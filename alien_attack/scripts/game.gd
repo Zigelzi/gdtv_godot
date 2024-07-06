@@ -46,8 +46,9 @@ func _on_enemy_spawn(enemy: Enemy) -> void:
 
 func _on_enemy_death(reward_amount: int) -> void:
 	_current_score += reward_amount
-	_enemy_spawner.reduce_spawn_time(_current_score / _difficulty_increase_treshold)
 	_hud.set_score(_current_score)
+	if _current_score % _difficulty_increase_treshold == 0:
+		_enemy_spawner.reduce_spawn_time()
 
 func _on_enemy_destroyed():
 	_reduce_lives()

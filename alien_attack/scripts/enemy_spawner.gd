@@ -40,8 +40,7 @@ func _spawn_enemy_to_random_spawn_point() -> void:
 func _on_game_ended() -> void:
 	_spawn_timer.stop()
 
-func reduce_spawn_time(difficult_multiplier: int) -> void:
-	var _spawn_time_reduction: float = difficult_multiplier * _spawn_time_reduction_step
-	_current_spawn_time = maxf(1, _current_spawn_time - _spawn_time_reduction)
+func reduce_spawn_time() -> void:
+	_current_spawn_time = maxf(1, _current_spawn_time - _spawn_time_reduction_step)
 	print(_current_spawn_time)
 	_spawn_timer.wait_time = _current_spawn_time
