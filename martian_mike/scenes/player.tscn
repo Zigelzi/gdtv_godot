@@ -1,8 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://dfxhqjadaltv2"]
+[gd_scene load_steps=31 format=3 uid="uid://dfxhqjadaltv2"]
 
 [ext_resource type="Texture2D" uid="uid://up8r0nh2gt16" path="res://assets/textures/player/Idle (32x32).png" id="1_gq266"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_um2df"]
+[ext_resource type="Texture2D" uid="uid://bmy6lrkpv4bit" path="res://assets/textures/player/Fall (32x32).png" id="2_d18yr"]
 [ext_resource type="Texture2D" uid="uid://cojhrna0r2fca" path="res://assets/textures/player/Run (32x32).png" id="2_lv1hk"]
+[ext_resource type="Texture2D" uid="uid://dai3tijxfxbe2" path="res://assets/textures/player/Jump (32x32).png" id="3_xyyvn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ertbj"]
 atlas = ExtResource("1_gq266")
@@ -98,7 +100,10 @@ region = Rect2(352, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hdxam"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_d18yr")
+}],
 "loop": true,
 "name": &"fall",
 "speed": 20.0
@@ -141,7 +146,10 @@ animations = [{
 "name": &"idle",
 "speed": 15.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_xyyvn")
+}],
 "loop": true,
 "name": &"jump",
 "speed": 20.0
@@ -193,12 +201,16 @@ size = Vector2(20, 26)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_um2df")
+_jump_force = 350.0
+_max_fall_velocity = 900.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_hdxam")
-animation = &"idle"
+animation = &"fall"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_tvdlp")
+
+[node name="Camera2D" type="Camera2D" parent="."]
