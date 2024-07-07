@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://kkv14ht1thvc"]
+[gd_scene load_steps=6 format=3 uid="uid://kkv14ht1thvc"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_7k5g0"]
 [ext_resource type="PackedScene" uid="uid://dfxhqjadaltv2" path="res://scenes/player.tscn" id="1_2811j"]
 [ext_resource type="Texture2D" uid="uid://e2w6furrr7pa" path="res://assets/icon.svg" id="2_cbbii"]
+[ext_resource type="PackedScene" uid="uid://u318l7vpvoc2" path="res://scenes/death_zone.tscn" id="4_1dkld"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jcbw0"]
 size = Vector2(348, 20)
@@ -22,3 +23,6 @@ texture = ExtResource("2_cbbii")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform_PH"]
 shape = SubResource("RectangleShape2D_jcbw0")
+
+[node name="DeathZone" parent="." instance=ExtResource("4_1dkld")]
+position = Vector2(0, 281)

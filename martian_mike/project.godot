@@ -52,6 +52,13 @@ quit={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="default"
+2d_physics/layer_2="player"
+2d_physics/layer_3="death_zone"
+2d_physics/layer_4="enemy"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

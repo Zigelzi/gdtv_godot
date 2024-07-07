@@ -7,6 +7,11 @@ extends CharacterBody2D
 @onready var _animations: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _default_gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+var _initial_position
+
+func _ready():
+	_initial_position = global_position
+
 func _physics_process(delta):
 	var direction: float = _get_movement_input()
 	_get_jump_input()
@@ -42,3 +47,8 @@ func _update_animations(direction: float) -> void:
 			_animations.play("fall")
 		else:
 			_animations.play("jump")
+	
+func reset() -> void:
+	print("Resetting player")
+	global_position = _initial_position
+	velocity = Vector2.ZERO
