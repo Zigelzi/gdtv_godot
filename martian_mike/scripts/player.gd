@@ -49,6 +49,5 @@ func _update_animations(direction: float) -> void:
 			_animations.play("jump")
 	
 func reset() -> void:
-	print("Resetting player")
 	global_position = _initial_position
 	velocity = Vector2.ZERO
