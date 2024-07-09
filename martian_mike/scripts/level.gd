@@ -12,5 +12,5 @@ func _process(_delta):
 		get_tree().reload_current_scene()
 
 func _on_player_body_entered(body: Node2D) -> void:
-	if body.has_method("reset"):
+	if body is Player:
 		body.reset()

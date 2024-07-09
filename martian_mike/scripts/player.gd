@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export var _speed: int = 200
 @export var _jump_force: float = 600
@@ -34,7 +35,7 @@ func _get_movement_input() -> float:
 
 func _get_jump_input() -> void:
 	if Input.is_action_just_pressed("jump")&&is_on_floor():
-		velocity.y = -_jump_force
+		jump(_jump_force)
 
 func _update_animations(direction: float) -> void:
 	if is_on_floor():
@@ -47,7 +48,10 @@ func _update_animations(direction: float) -> void:
 			_animations.play("fall")
 		else:
 			_animations.play("jump")
-	
+
+func jump(force: float) -> void:
+	velocity.y = -force
+
 func reset() -> void:
 	global_position = _initial_position
 	velocity = Vector2.ZERO
