@@ -23,9 +23,10 @@ script = ExtResource("1_7k5g0")
 _player_scene = ExtResource("1_2811j")
 
 [node name="LevelStartEndPoints" parent="." instance=ExtResource("2_o2ayb")]
+position = Vector2(28, -42)
 
-[node name="StartPoint" parent="LevelStartEndPoints" index="0"]
-position = Vector2(25, -42)
+[node name="EndPoint" parent="LevelStartEndPoints" index="1"]
+position = Vector2(704, 0)
 
 [node name="Platform_PH" type="StaticBody2D" parent="."]
 position = Vector2(172, 0)

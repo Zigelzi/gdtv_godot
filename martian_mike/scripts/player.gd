@@ -9,10 +9,14 @@ class_name Player
 @onready var _default_gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var start_position: Vector2 = Vector2.ZERO
+var is_active: bool = true
 
 func _physics_process(delta):
-	var direction: float = _get_movement_input()
-	_get_jump_input()
+	var direction: float = 0
+
+	if is_active:
+		direction = _get_movement_input()
+		_get_jump_input()
 	
 	if !is_on_floor():
 		velocity.y += _default_gravity * delta

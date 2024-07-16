@@ -144,10 +144,10 @@ animation = &"swing"
 autoplay = "swing"
 frame_progress = 0.509261
 
-[node name="StartPlatform" type="StaticBody2D" parent="AnimatedSprite2D"]
+[node name="Platform" type="StaticBody2D" parent="AnimatedSprite2D"]
 position = Vector2(11, 28)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/StartPlatform"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Platform"]
 shape = SubResource("RectangleShape2D_b47q5")
 
 [node name="DetectionArea" type="CollisionShape2D" parent="."]
