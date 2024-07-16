@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var _player_scene: PackedScene
+@export var _next_level: PackedScene
 
 @onready var _death_zone: Area2D = $DeathZone
 @onready var _start_point: Area2D = $LevelStartEndPoints/StartPoint
@@ -22,7 +23,10 @@ func _on_player_body_entered(body: Node2D) -> void:
 		body.reset()
 	
 func _on_player_end_reached() -> void:
-	print("Change to next scene")
+	if _next_level:
+		get_tree().change_scene_to_packed(_next_level)
+	else:
+		print("You won the game - Display game over screen")
 
 func _spawn_player() -> void:
 	if !_player_scene: return

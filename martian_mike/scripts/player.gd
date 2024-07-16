@@ -17,6 +17,8 @@ func _physics_process(delta):
 	if is_active:
 		direction = _get_movement_input()
 		_get_jump_input()
+	else:
+		velocity.x = 0
 	
 	if !is_on_floor():
 		velocity.y += _default_gravity * delta
@@ -32,6 +34,7 @@ func _physics_process(delta):
 func _get_movement_input() -> float:
 	var input: float = Input.get_axis("move_left", "move_right")
 	velocity.x = input * _speed
+	
 	return input
 
 func _get_jump_input() -> void:
@@ -57,5 +60,6 @@ func jump(force: float) -> void:
 	velocity.y = -force
 
 func reset() -> void:
+	is_active = true
 	global_position = start_position
 	velocity = Vector2.ZERO
