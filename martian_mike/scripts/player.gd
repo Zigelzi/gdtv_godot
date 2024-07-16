@@ -8,10 +8,7 @@ class_name Player
 @onready var _animations: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _default_gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-var _initial_position
-
-func _ready():
-	_initial_position = global_position
+var start_position: Vector2 = Vector2.ZERO
 
 func _physics_process(delta):
 	var direction: float = _get_movement_input()
@@ -49,9 +46,12 @@ func _update_animations(direction: float) -> void:
 		else:
 			_animations.play("jump")
 
+func set_start_position(position: Vector2) -> void:
+	start_position = position
+
 func jump(force: float) -> void:
 	velocity.y = -force
 
 func reset() -> void:
-	global_position = _initial_position
+	global_position = start_position
 	velocity = Vector2.ZERO

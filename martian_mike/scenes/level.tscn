@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://kkv14ht1thvc"]
+[gd_scene load_steps=11 format=3 uid="uid://kkv14ht1thvc"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_7k5g0"]
 [ext_resource type="PackedScene" uid="uid://dfxhqjadaltv2" path="res://scenes/player.tscn" id="1_2811j"]
 [ext_resource type="Texture2D" uid="uid://e2w6furrr7pa" path="res://assets/icon.svg" id="2_cbbii"]
+[ext_resource type="PackedScene" uid="uid://c10l2j8rhwcwo" path="res://scenes/level_start_end_points.tscn" id="2_o2ayb"]
 [ext_resource type="PackedScene" uid="uid://u318l7vpvoc2" path="res://scenes/death_zone.tscn" id="4_1dkld"]
 [ext_resource type="PackedScene" uid="uid://7sqpd3uxxu1f" path="res://scenes/jump_pad.tscn" id="4_7yncu"]
 [ext_resource type="PackedScene" uid="uid://dftyj7voo8nwr" path="res://scenes/spike_ball_trap_path.tscn" id="6_q3302"]
@@ -19,9 +20,12 @@ point_count = 2
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_7k5g0")
+_player_scene = ExtResource("1_2811j")
 
-[node name="Player" parent="." instance=ExtResource("1_2811j")]
-position = Vector2(18, -19)
+[node name="LevelStartEndPoints" parent="." instance=ExtResource("2_o2ayb")]
+
+[node name="StartPoint" parent="LevelStartEndPoints" index="0"]
+position = Vector2(25, -42)
 
 [node name="Platform_PH" type="StaticBody2D" parent="."]
 position = Vector2(172, 0)
@@ -57,3 +61,5 @@ position = Vector2(109, -15)
 [node name="SpikeBallTrapPath" parent="Traps" instance=ExtResource("6_q3302")]
 position = Vector2(477, -32)
 curve = SubResource("Curve2D_q8ge4")
+
+[editable path="LevelStartEndPoints"]

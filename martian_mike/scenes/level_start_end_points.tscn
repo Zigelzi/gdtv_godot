@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c10l2j8rhwcwo"]
+
+[ext_resource type="PackedScene" uid="uid://jdkehj3jd47j" path="res://scenes/start_point.tscn" id="1_5e7iw"]
+
+[node name="LevelStartEndPoints" type="Node2D"]
+
+[node name="StartPoint" parent="." instance=ExtResource("1_5e7iw")]

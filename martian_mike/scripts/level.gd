@@ -1,9 +1,13 @@
 extends Node2D
 
-@onready var death_zone: Area2D = $DeathZone
+@export var _player_scene: PackedScene
+
+@onready var _death_zone: Area2D = $DeathZone
+@onready var _start_point: Area2D = $LevelStartEndPoints/StartPoint
 
 func _ready():
-	death_zone.body_entered.connect(_on_player_body_entered)
+	_death_zone.body_entered.connect(_on_player_body_entered)
+	_spawn_player()
 
 func _process(_delta):
 	if Input.is_action_just_pressed("quit"):
@@ -14,3 +18,11 @@ func _process(_delta):
 func _on_player_body_entered(body: Node2D) -> void:
 	if body is Player:
 		body.reset()
+
+func _spawn_player() -> void:
+	if !_player_scene: return
+
+	var instantiated_player: Player = _player_scene.instantiate()
+	instantiated_player.set_start_position(_start_point.global_position)
+	instantiated_player.global_position = _start_point.global_position
+	add_child(instantiated_player)
