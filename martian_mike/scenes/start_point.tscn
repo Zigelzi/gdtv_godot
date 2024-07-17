@@ -2,6 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://bl8wowbutaoqm" path="res://assets/textures/other/Start.png" id="1_s0sgl"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b47q5"]
+size = Vector2(34, 8)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_qi0ee"]
 atlas = ExtResource("1_s0sgl")
 region = Rect2(0, 0, 64, 64)
@@ -129,26 +132,23 @@ animations = [{
 "speed": 20.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b47q5"]
-size = Vector2(34, 8)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0yji5"]
 size = Vector2(55, 53)
 
 [node name="StartPoint" type="Area2D"]
 collision_mask = 2
 
+[node name="Platform" type="StaticBody2D" parent="."]
+position = Vector2(11, 28)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+shape = SubResource("RectangleShape2D_b47q5")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_87qm5")
 animation = &"swing"
 autoplay = "swing"
 frame_progress = 0.509261
-
-[node name="Platform" type="StaticBody2D" parent="AnimatedSprite2D"]
-position = Vector2(11, 28)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Platform"]
-shape = SubResource("RectangleShape2D_b47q5")
 
 [node name="DetectionArea" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 5.5)
