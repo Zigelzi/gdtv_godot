@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://kkv14ht1thvc"]
+[gd_scene load_steps=9 format=3 uid="uid://kkv14ht1thvc"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_7k5g0"]
 [ext_resource type="PackedScene" uid="uid://dfxhqjadaltv2" path="res://scenes/player.tscn" id="1_2811j"]
 [ext_resource type="PackedScene" uid="uid://c10l2j8rhwcwo" path="res://scenes/level_start_end_points.tscn" id="2_o2ayb"]
+[ext_resource type="PackedScene" uid="uid://cdabxg3row7g2" path="res://scenes/ui_layer.tscn" id="3_ixjwf"]
 [ext_resource type="PackedScene" uid="uid://u318l7vpvoc2" path="res://scenes/death_zone.tscn" id="4_1dkld"]
 [ext_resource type="Texture2D" uid="uid://0nvlseo4fwvr" path="res://assets/textures/Terrain (16x16).png" id="5_gae5w"]
 
@@ -676,6 +677,8 @@ sources/0 = SubResource("TileSetAtlasSource_kqalv")
 [node name="Level" type="Node2D"]
 script = ExtResource("1_7k5g0")
 _player_scene = ExtResource("1_2811j")
+
+[node name="UILayer" parent="." instance=ExtResource("3_ixjwf")]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_qxs8h")
