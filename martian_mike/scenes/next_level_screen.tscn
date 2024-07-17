@@ -1,20 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://rom2puit4mp2"]
+[gd_scene load_steps=4 format=3 uid="uid://bfquoqtbtk5vx"]
 
-[ext_resource type="Script" path="res://scripts/win_screen.gd" id="1_3hq2p"]
-[ext_resource type="FontFile" uid="uid://chbk54bu10grq" path="res://assets/fonts/Kenney Pixel Square.ttf" id="1_pbsag"]
+[ext_resource type="Script" path="res://scripts/next_level_screen.gd" id="1_aae0o"]
+[ext_resource type="FontFile" uid="uid://chbk54bu10grq" path="res://assets/fonts/Kenney Pixel Square.ttf" id="1_op7bx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_eq2im"]
-font = ExtResource("1_pbsag")
+font = ExtResource("1_op7bx")
 font_size = 24
 
-[node name="WinScreen" type="Control"]
+[node name="NextLevelScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_3hq2p")
+script = ExtResource("1_aae0o")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -45,7 +45,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Heading" type="Label" parent="Content/HeadingContainer"]
 layout_mode = 2
-text = "Mars is saved!"
+text = "Level completed!"
 label_settings = SubResource("LabelSettings_eq2im")
 
 [node name="ButtonContainer" type="MarginContainer" parent="Content"]
@@ -57,12 +57,12 @@ theme_override_constants/margin_right = 20
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="RetryButton" type="Button" parent="Content/ButtonContainer/VBoxContainer"]
+[node name="NextLevelButton" type="Button" parent="Content/ButtonContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_pbsag")
-text = "Retry"
+theme_override_fonts/font = ExtResource("1_op7bx")
+text = "Continue"
 
 [node name="QuitButton" type="Button" parent="Content/ButtonContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_pbsag")
+theme_override_fonts/font = ExtResource("1_op7bx")
 text = "Quit"

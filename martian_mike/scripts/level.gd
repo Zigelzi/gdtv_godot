@@ -25,7 +25,7 @@ func _on_player_body_entered(body: Node2D) -> void:
 	
 func _on_player_end_reached() -> void:
 	if _next_level:
-		get_tree().change_scene_to_packed(_next_level)
+		_ui_layer.set_next_level(_next_level)
 	else:
 		_ui_layer.display_win_screen(true)
 
