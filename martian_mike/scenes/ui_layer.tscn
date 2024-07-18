@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdabxg3row7g2"]
+[gd_scene load_steps=5 format=3 uid="uid://cdabxg3row7g2"]
 
 [ext_resource type="PackedScene" uid="uid://rom2puit4mp2" path="res://scenes/win_screen.tscn" id="1_ryfhx"]
 [ext_resource type="Script" path="res://scripts/ui_control.gd" id="1_tveym"]
 [ext_resource type="PackedScene" uid="uid://bfquoqtbtk5vx" path="res://scenes/next_level_screen.tscn" id="3_trnjp"]
+[ext_resource type="PackedScene" uid="uid://b43l6m62h3eto" path="res://scenes/hud.tscn" id="4_kefmi"]
 
 [node name="UILayer" type="CanvasLayer"]
 layer = 10
@@ -13,3 +14,5 @@ visible = false
 
 [node name="NextLevelScreen" parent="." instance=ExtResource("3_trnjp")]
 visible = false
+
+[node name="HUD" parent="." instance=ExtResource("4_kefmi")]

@@ -7,7 +7,7 @@ extends Node2D
 @onready var _death_zone: Area2D = $DeathZone
 @onready var _end_point: Area2D = $LevelStartEndPoints/EndPoint
 @onready var _start_point: Area2D = $LevelStartEndPoints/StartPoint
-@onready var _ui_layer: CanvasLayer = $UILayer
+@onready var _ui_layer: UiControl = $UILayer
 
 var _level_timer: Timer
 
@@ -16,6 +16,7 @@ func _ready():
 	_end_point.end_reached.connect(_on_player_end_reached)
 	_spawn_player()
 	spawn_level_timer()
+	_ui_layer.set_time_label(_level_timer.time_left)
 
 func _process(_delta):
 	if Input.is_action_just_pressed("quit"):
@@ -23,13 +24,15 @@ func _process(_delta):
 	if Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
 
+	_ui_layer.set_time_label(_level_timer.time_left)
+
 func _on_player_body_entered(body: Node2D) -> void:
 	_level_timer.start()
 	if body is Player:
 		body.reset()
 	
 func _on_player_end_reached() -> void:
-	_level_timer.stop()
+	_level_timer.paused = true
 	if _next_level:
 		_ui_layer.set_next_level(_next_level)
 		_ui_layer.display_next_level_screen(true)
@@ -47,6 +50,7 @@ func _spawn_player() -> void:
 func spawn_level_timer() -> void:
 	_level_timer = Timer.new()
 	_level_timer.wait_time = _level_time
+	_level_timer.one_shot = true
 	add_child(_level_timer)
 	_level_timer.start()
 	await _level_timer.timeout
