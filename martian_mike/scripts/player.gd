@@ -53,13 +53,15 @@ func _update_animations(direction: float) -> void:
 		else:
 			_animations.play("jump")
 
-func set_start_position(position: Vector2) -> void:
-	start_position = position
+func set_start_position(new_position: Vector2) -> void:
+	start_position = new_position
 
 func jump(force: float) -> void:
 	velocity.y = -force
+	AudioPlayer.play_sfx("jump")
 
 func reset() -> void:
 	is_active = true
 	global_position = start_position
 	velocity = Vector2.ZERO
+	AudioPlayer.play_sfx("hurt")
