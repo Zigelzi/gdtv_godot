@@ -679,6 +679,7 @@ sources/0 = SubResource("TileSetAtlasSource_kqalv")
 script = ExtResource("1_g4c48")
 _player_scene = ExtResource("2_y1kqp")
 _next_level = ExtResource("3_ain5l")
+_level_time = 10.0
 
 [node name="UILayer" parent="." instance=ExtResource("3_y326m")]
 
