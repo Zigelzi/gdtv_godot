@@ -4,9 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://ca5ybfrwm03b0" path="res://assets/textures/other/End (Pressed) (64x64).png" id="1_lobrm"]
 [ext_resource type="Texture2D" uid="uid://bqnevd0fvivgq" path="res://assets/textures/other/End (Idle).png" id="1_v0rvr"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xmsf5"]
-size = Vector2(34, 8)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_12prk"]
 atlas = ExtResource("1_lobrm")
 region = Rect2(0, 0, 64, 64)
@@ -79,6 +76,9 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xmsf5"]
+size = Vector2(34, 8)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gx4y"]
 size = Vector2(22, 20)
 
@@ -86,18 +86,26 @@ size = Vector2(22, 20)
 collision_mask = 2
 script = ExtResource("1_gwvsh")
 
-[node name="Platform" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
-position = Vector2(0, 28)
-shape = SubResource("RectangleShape2D_xmsf5")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_esi7r")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.631579
 speed_scale = 0.6
+
+[node name="Platform" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+position = Vector2(0, 28)
+shape = SubResource("RectangleShape2D_xmsf5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Platform"]
+position = Vector2(-17, 24)
+polygon = PackedVector2Array(0, 8, 0, 0, -10, 8)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Platform"]
+position = Vector2(17, 24)
+polygon = PackedVector2Array(0, 8, 0, 0, 10, 8)
 
 [node name="DetectionArea" type="CollisionShape2D" parent="."]
 position = Vector2(0, 14)
