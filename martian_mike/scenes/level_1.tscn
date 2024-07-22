@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://sb44sabamrdj"]
+[gd_scene load_steps=11 format=3 uid="uid://sb44sabamrdj"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_g4c48"]
 [ext_resource type="PackedScene" uid="uid://dfxhqjadaltv2" path="res://scenes/player.tscn" id="2_y1kqp"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cdabxg3row7g2" path="res://scenes/ui_layer.tscn" id="3_y326m"]
 [ext_resource type="PackedScene" uid="uid://c10l2j8rhwcwo" path="res://scenes/level_start_end_points.tscn" id="4_40sx7"]
 [ext_resource type="PackedScene" uid="uid://u318l7vpvoc2" path="res://scenes/death_zone.tscn" id="5_cc88a"]
+[ext_resource type="PackedScene" uid="uid://bwkjajb61oo3u" path="res://scenes/background_image.tscn" id="8_hdbno"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kqalv"]
 resource_name = "Default Tiles"
@@ -681,6 +682,8 @@ _player_scene = ExtResource("2_y1kqp")
 _next_level = ExtResource("3_ain5l")
 
 [node name="UILayer" parent="." instance=ExtResource("3_y326m")]
+
+[node name="BackgroundImage" parent="." instance=ExtResource("8_hdbno")]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_qxs8h")

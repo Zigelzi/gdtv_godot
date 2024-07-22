@@ -4,7 +4,6 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_rrvyk"]
 font = ExtResource("1_x72g0")
-outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
 [node name="HUD" type="Control"]
