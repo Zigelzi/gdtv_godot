@@ -2,18 +2,23 @@ extends CharacterBody2D
 class_name Player
 
 @export var _speed: int = 200
-@export var _jump_force: float = 600
-@export var _max_fall_velocity: float = 400
+
+@export_subgroup("Jumping")
+@export var _max_fall_velocity: float = 600
+@export var _jump_height: float = 68
+@export var _jump_time_to_peak: float = 0.3
+@export var _jump_time_to_descent: float = 0.2
 
 @onready var _animations: AnimatedSprite2D = $AnimatedSprite2D
-@onready var _default_gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
+@onready var _jump_velocity: float = ((2 * _jump_height) / _jump_time_to_peak) * - 1.0
+@onready var _jump_gravity: float = ((-2 * _jump_height) / (_jump_time_to_peak * _jump_time_to_peak)) * - 1.0
+@onready var _fall_gravity: float = ((-2 * _jump_height) / (_jump_time_to_descent * _jump_time_to_descent)) * - 1.0
 
 var start_position: Vector2 = Vector2.ZERO
 var is_active: bool = true
 
 func _physics_process(delta):
 	var direction: float = 0
-
 	if is_active:
 		direction = _get_movement_input()
 		_get_jump_input()
@@ -21,9 +26,10 @@ func _physics_process(delta):
 		velocity.x = 0
 	
 	if !is_on_floor():
-		velocity.y += _default_gravity * delta
-		if velocity.y >= _max_fall_velocity:
-			velocity.y = _max_fall_velocity
+		velocity.y += _get_gravity() * delta
+	
+	if velocity.y >= _max_fall_velocity:
+		velocity.y = _max_fall_velocity
 
 	if direction != 0:
 		_animations.flip_h = direction == - 1
@@ -39,7 +45,13 @@ func _get_movement_input() -> float:
 
 func _get_jump_input() -> void:
 	if Input.is_action_just_pressed("jump")&&is_on_floor():
-		jump(_jump_force)
+		_jump()
+
+func _jump() -> void:
+	velocity.y = _jump_velocity
+
+func _get_gravity() -> float:
+	return _jump_gravity if velocity.y < 0 else _fall_gravity
 
 func _update_animations(direction: float) -> void:
 	if is_on_floor():
@@ -56,7 +68,7 @@ func _update_animations(direction: float) -> void:
 func set_start_position(new_position: Vector2) -> void:
 	start_position = new_position
 
-func jump(force: float) -> void:
+func bounce(force: float) -> void:
 	velocity.y = -force
 	AudioPlayer.play_sfx("jump")
 

@@ -10,4 +10,4 @@ func _ready():
 func _on_player_body_entered(body: Node2D) -> void:
 	if body is Player:
 		_animation.play("jump")
-		body.jump(_bounce_force)
+		body.bounce(_bounce_force)
