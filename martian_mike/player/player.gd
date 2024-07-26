@@ -6,13 +6,13 @@ class_name Player
 @export_subgroup("Jumping")
 @export var _max_fall_velocity: float = 600
 @export var _jump_height: float = 68
-@export var _jump_time_to_peak: float = 0.3
-@export var _jump_time_to_descent: float = 0.2
+@export var _jump_distance_to_peak: float = 40.0 # px
+@export var _jump_distance_to_descent: float = 40.0 # px
 
 @onready var _animations: AnimatedSprite2D = $AnimatedSprite2D
-@onready var _jump_velocity: float = ((2 * _jump_height) / _jump_time_to_peak) * - 1.0
-@onready var _jump_gravity: float = ((-2 * _jump_height) / (_jump_time_to_peak * _jump_time_to_peak)) * - 1.0
-@onready var _fall_gravity: float = ((-2 * _jump_height) / (_jump_time_to_descent * _jump_time_to_descent)) * - 1.0
+@onready var _jump_velocity: float = ((2.0 * _jump_height * _speed) / _jump_distance_to_peak) * - 1.0
+@onready var _jump_gravity: float = ((-2.0 * _jump_height * (_speed * _speed)) / (_jump_distance_to_peak * _jump_distance_to_peak)) * - 1.0
+@onready var _fall_gravity: float = ((-2.0 * _jump_height * (_speed * _speed)) / (_jump_distance_to_descent * _jump_distance_to_descent)) * - 1.0
 
 var start_position: Vector2 = Vector2.ZERO
 var is_active: bool = true
@@ -27,7 +27,7 @@ func _physics_process(delta):
 	
 	if !is_on_floor():
 		velocity.y += _get_gravity() * delta
-	
+
 	if velocity.y >= _max_fall_velocity:
 		velocity.y = _max_fall_velocity
 
@@ -49,6 +49,7 @@ func _get_jump_input() -> void:
 
 func _jump() -> void:
 	velocity.y = _jump_velocity
+	AudioPlayer.play_sfx("jump")
 
 func _get_gravity() -> float:
 	return _jump_gravity if velocity.y < 0 else _fall_gravity
