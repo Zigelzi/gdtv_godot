@@ -21,6 +21,7 @@ func _physics_process(delta):
 	var direction: float = 0
 	if is_active:
 		direction = _get_movement_input()
+		velocity.x = direction * _speed
 		_get_jump_input()
 	else:
 		velocity.x = 0
@@ -39,7 +40,6 @@ func _physics_process(delta):
 
 func _get_movement_input() -> float:
 	var input: float = Input.get_axis("move_left", "move_right")
-	velocity.x = input * _speed
 	
 	return input
 

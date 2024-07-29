@@ -15,8 +15,11 @@ func _ready():
 	_death_zone.body_entered.connect(_on_player_body_entered)
 	_end_point.end_reached.connect(_on_player_end_reached)
 	_spawn_player()
-	spawn_level_timer()
-	_ui_layer.set_time_label(_level_timer.time_left)
+	
+	# Level timer disabled. Consuming all energy is the fail condition.
+	# spawn_level_timer()
+
+	# _ui_layer.set_time_label(_level_timer.time_left)
 
 func _process(_delta):
 	if Input.is_action_just_pressed("quit"):
@@ -24,15 +27,15 @@ func _process(_delta):
 	if Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
 
-	_ui_layer.set_time_label(_level_timer.time_left)
+	# _ui_layer.set_time_label(_level_timer.time_left)
 
 func _on_player_body_entered(body: Node2D) -> void:
-	_level_timer.start()
+	# _level_timer.start()
 	if body is Player:
 		body.reset()
 	
 func _on_player_end_reached() -> void:
-	_level_timer.paused = true
+	# _level_timer.paused = true
 	if _next_level:
 		_ui_layer.set_next_level(_next_level)
 		_ui_layer.display_next_level_screen(true)
