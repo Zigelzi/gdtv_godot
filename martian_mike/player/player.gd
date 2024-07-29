@@ -13,6 +13,7 @@ signal energy_consumed(new_energy: float)
 @export_subgroup("Energy")
 @export var _max_energy: float = 100
 @export var _walking_energy_consumption: float = 5.0
+@export var _jump_energy_consumption: float = 5.0
 
 @onready var _animations: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _jump_velocity: float = ((2.0 * _jump_height * _speed) / _jump_distance_to_peak) * -1.0
@@ -48,6 +49,7 @@ func _physics_process(delta):
 		energy_consumed.emit(_current_energy)
 	
 	if _current_energy <= 0:
+		_current_energy = 0
 		reset()
 
 	_update_animations(direction)
@@ -64,6 +66,7 @@ func _get_jump_input() -> void:
 
 func _jump() -> void:
 	velocity.y = _jump_velocity
+	_current_energy -= _jump_energy_consumption
 	AudioPlayer.play_sfx("jump")
 
 func _get_gravity() -> float:
@@ -92,4 +95,5 @@ func reset() -> void:
 	is_active = true
 	global_position = start_position
 	velocity = Vector2.ZERO
+	_current_energy = _max_energy
 	AudioPlayer.play_sfx("hurt")
