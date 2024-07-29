@@ -1,5 +1,6 @@
 extends Node2D
 
+
 @export var _player_scene: PackedScene
 @export var _next_level: PackedScene
 @export var _level_time: float = 20
@@ -48,6 +49,7 @@ func _spawn_player() -> void:
 	var instantiated_player: Player = _player_scene.instantiate()
 	instantiated_player.set_start_position(_start_point.global_position)
 	instantiated_player.global_position = _start_point.global_position
+	instantiated_player.energy_consumed.connect(_ui_layer.on_player_energy_consumed)
 	add_child(instantiated_player)
 
 func spawn_level_timer() -> void:
