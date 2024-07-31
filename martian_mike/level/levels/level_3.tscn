@@ -687,6 +687,9 @@ layer_0/tile_data = PackedInt32Array(262145, 458752, 1, 196609, 458752, 1, 13107
 
 [node name="LevelStartEndPoints" parent="." instance=ExtResource("5_wklhn")]
 
+[node name="StartPoint" parent="LevelStartEndPoints" index="0"]
+position = Vector2(1, 0)
+
 [node name="EndPoint" parent="LevelStartEndPoints" index="1"]
 position = Vector2(1509, 0)
 

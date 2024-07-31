@@ -693,22 +693,22 @@ layer_0/tile_data = PackedInt32Array(589881, 458752, 2, 524345, 458752, 1, 45880
 [node name="Objects" type="Node2D" parent="."]
 
 [node name="JumpPad" parent="Objects" instance=ExtResource("6_d7m8d")]
-position = Vector2(204, -45)
+position = Vector2(204, -31)
 
 [node name="JumpPad2" parent="Objects" instance=ExtResource("6_d7m8d")]
-position = Vector2(593, -158)
+position = Vector2(593, -144)
 
 [node name="JumpPad3" parent="Objects" instance=ExtResource("6_d7m8d")]
-position = Vector2(759, -14)
+position = Vector2(759, 0)
 
 [node name="JumpPad4" parent="Objects" instance=ExtResource("6_d7m8d")]
-position = Vector2(901, -14)
+position = Vector2(901, 0)
 
 [node name="JumpPad5" parent="Objects" instance=ExtResource("6_d7m8d")]
-position = Vector2(1008, -109)
+position = Vector2(1008, -95)
 
 [node name="JumpPad6" parent="Objects" instance=ExtResource("6_d7m8d")]
-position = Vector2(1120, -189)
+position = Vector2(1120, -175)
 
 [node name="Traps" type="Node2D" parent="."]
 

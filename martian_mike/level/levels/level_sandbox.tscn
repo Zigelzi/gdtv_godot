@@ -692,16 +692,19 @@ layer_0/tile_data = PackedInt32Array(262153, 458752, 2, 196617, 458752, 1, 13108
 
 [node name="LevelStartEndPoints" parent="." instance=ExtResource("5_bya3p")]
 
+[node name="StartPoint" parent="LevelStartEndPoints" index="0"]
+position = Vector2(0, 0)
+
 [node name="EndPoint" parent="LevelStartEndPoints" index="1"]
 position = Vector2(1489, 0)
 
 [node name="Objects" type="Node2D" parent="."]
 
 [node name="JumpPad" parent="Objects" instance=ExtResource("6_mcwqk")]
-position = Vector2(139, 18)
+position = Vector2(137, 32)
 
 [node name="JumpPad2" parent="Objects" instance=ExtResource("6_mcwqk")]
-position = Vector2(279, 19)
+position = Vector2(277, 32)
 
 [node name="Traps" type="Node2D" parent="."]
 

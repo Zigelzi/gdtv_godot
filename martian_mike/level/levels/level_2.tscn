@@ -691,6 +691,9 @@ layer_0/tile_data = PackedInt32Array(262187, 458752, 1, 196651, 458752, 1, 13111
 
 [node name="LevelStartEndPoints" parent="." instance=ExtResource("5_11hai")]
 
+[node name="StartPoint" parent="LevelStartEndPoints" index="0"]
+position = Vector2(0, 0)
+
 [node name="EndPoint" parent="LevelStartEndPoints" index="1"]
 position = Vector2(1775, -272)
 
