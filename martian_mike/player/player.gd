@@ -45,9 +45,10 @@ func _physics_process(delta):
 
 	if direction != 0:
 		_animations.flip_h = direction == -1
-		_current_energy -= _walking_energy_consumption * delta
-		energy_updated.emit(_current_energy)
-	
+		if is_on_floor():
+			_current_energy -= _walking_energy_consumption * delta
+			energy_updated.emit(_current_energy)
+
 	if _current_energy <= 0:
 		_current_energy = 0
 		reset()
@@ -69,6 +70,7 @@ func _get_jump_input() -> void:
 func _jump() -> void:
 	velocity.y = _jump_velocity
 	_current_energy -= _jump_energy_consumption
+	energy_updated.emit(_current_energy)
 	AudioPlayer.play_sfx("jump")
 
 func _get_gravity() -> float:

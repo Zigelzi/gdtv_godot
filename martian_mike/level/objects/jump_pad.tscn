@@ -84,6 +84,7 @@ position = Vector2(0, -14)
 collision_layer = 16
 collision_mask = 2
 script = ExtResource("1_e254f")
+_bounce_force = 600.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_g5i4m")

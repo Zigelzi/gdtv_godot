@@ -1,19 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://bk8qhbceolds7"]
 
-[ext_resource type="Texture2D" uid="uid://daqu7q2gnh300" path="res://level/pickups/Icon_Energy.png" id="1_bnvus"]
-[ext_resource type="Script" path="res://level/pickups/pickup.gd" id="1_ek233"]
+[ext_resource type="Script" path="res://level/pickups/pickup.gd" id="1_m04sc"]
+[ext_resource type="Texture2D" uid="uid://daqu7q2gnh300" path="res://level/pickups/Icon_Energy.png" id="2_ji14i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hbqo3"]
 radius = 10.0499
 
-[node name="Pickup" type="Area2D"]
+[node name="Pickup_Energy" type="Area2D"]
 collision_layer = 32
 collision_mask = 2
-script = ExtResource("1_ek233")
+script = ExtResource("1_m04sc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.7, 0.7)
-texture = ExtResource("1_bnvus")
+texture = ExtResource("2_ji14i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_hbqo3")

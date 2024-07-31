@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c10l2j8rhwcwo" path="res://level/objects/level_start_end_points.tscn" id="5_11hai"]
 [ext_resource type="PackedScene" uid="uid://u318l7vpvoc2" path="res://level/death_zone.tscn" id="6_r8ffg"]
 [ext_resource type="PackedScene" uid="uid://bqphktymt4um" path="res://level/traps/sawblade_trap.tscn" id="7_ewqv8"]
-[ext_resource type="PackedScene" uid="uid://bk8qhbceolds7" path="res://level/pickups/pickup.tscn" id="7_tes8k"]
+[ext_resource type="PackedScene" uid="uid://bk8qhbceolds7" path="res://level/pickups/pickup_energy.tscn" id="7_tes8k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kqalv"]
 resource_name = "Default Tiles"
