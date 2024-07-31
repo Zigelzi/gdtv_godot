@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ciola301blrpj"]
+[gd_scene load_steps=12 format=3 uid="uid://ciola301blrpj"]
 
 [ext_resource type="Script" path="res://level/levels/level.gd" id="1_alnce"]
 [ext_resource type="PackedScene" uid="uid://dfxhqjadaltv2" path="res://player/player.tscn" id="2_kljft"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c10l2j8rhwcwo" path="res://level/objects/level_start_end_points.tscn" id="5_11hai"]
 [ext_resource type="PackedScene" uid="uid://u318l7vpvoc2" path="res://level/death_zone.tscn" id="6_r8ffg"]
 [ext_resource type="PackedScene" uid="uid://bqphktymt4um" path="res://level/traps/sawblade_trap.tscn" id="7_ewqv8"]
+[ext_resource type="PackedScene" uid="uid://bk8qhbceolds7" path="res://level/pickups/pickup.tscn" id="7_tes8k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kqalv"]
 resource_name = "Default Tiles"
@@ -694,6 +695,11 @@ layer_0/tile_data = PackedInt32Array(262187, 458752, 1, 196651, 458752, 1, 13111
 position = Vector2(1775, -272)
 
 [node name="Objects" type="Node2D" parent="."]
+
+[node name="Pickups" type="Node2D" parent="."]
+
+[node name="Pickup" parent="Pickups" instance=ExtResource("7_tes8k")]
+position = Vector2(364, -200)
 
 [node name="Traps" type="Node2D" parent="."]
 

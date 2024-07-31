@@ -18,7 +18,7 @@ func set_time_label(new_time: float) -> void:
 
 	_hud_time_label.text = "TIME: %.0f" % new_time
 
-func on_player_energy_consumed(new_energy_amount: float) -> void:
+func on_player_energy_updated(new_energy_amount: float) -> void:
 	set_energy_label(new_energy_amount)
 
 func set_energy_label(new_energy: float) -> void:

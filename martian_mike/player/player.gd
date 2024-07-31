@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
-signal energy_consumed(new_energy: float)
+signal energy_updated(new_energy: float)
 @export var _speed: int = 200
 
 @export_subgroup("Jumping")
@@ -26,7 +26,7 @@ var is_active: bool = true
 
 func _ready():
 	_current_energy = _max_energy
-	energy_consumed.emit(_current_energy)
+	energy_updated.emit(_current_energy)
 
 func _physics_process(delta):
 	var direction: float = 0
@@ -46,7 +46,7 @@ func _physics_process(delta):
 	if direction != 0:
 		_animations.flip_h = direction == -1
 		_current_energy -= _walking_energy_consumption * delta
-		energy_consumed.emit(_current_energy)
+		energy_updated.emit(_current_energy)
 	
 	if _current_energy <= 0:
 		_current_energy = 0
@@ -60,6 +60,8 @@ func _get_movement_input() -> float:
 	
 	return input
 
+#region Jumping
+
 func _get_jump_input() -> void:
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		_jump()
@@ -71,6 +73,8 @@ func _jump() -> void:
 
 func _get_gravity() -> float:
 	return _jump_gravity if velocity.y < 0 else _fall_gravity
+
+#endregion
 
 func _update_animations(direction: float) -> void:
 	if is_on_floor():
@@ -97,3 +101,9 @@ func reset() -> void:
 	velocity = Vector2.ZERO
 	_current_energy = _max_energy
 	AudioPlayer.play_sfx("hurt")
+
+#region Energy
+func grant_energy(amount: float) -> void:
+	_current_energy = minf(_max_energy, _current_energy + amount)
+	energy_updated.emit(_current_energy)
+#endregion

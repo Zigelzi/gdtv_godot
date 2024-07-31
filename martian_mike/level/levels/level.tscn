@@ -693,6 +693,8 @@ position = Vector2(704, 0)
 
 [node name="Traps" type="Node2D" parent="."]
 
+[node name="Pickups" type="Node2D" parent="."]
+
 [node name="DeathZone" parent="." instance=ExtResource("4_1dkld")]
 position = Vector2(0, 150)
 
