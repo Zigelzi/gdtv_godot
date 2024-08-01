@@ -203,7 +203,8 @@ size = Vector2(20, 26)
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_um2df")
-_max_acceleration = 800.0
+_max_movement_speed = 300
+_max_acceleration = 1250.0
 _jump_distance_to_peak = 64.0
 _jump_distance_to_descent = 44.0
 

@@ -30,18 +30,26 @@ var _current_energy: float = -1.0
 var start_position: Vector2 = Vector2.ZERO
 var is_active: bool = true
 var _is_dashing: bool = false
+var _is_facing_left: bool = false
 var _direction: int = 0
 
 func _ready():
 	_current_energy = _max_energy
 	energy_updated.emit(_current_energy)
 
-func _physics_process(delta):
+func _process(_delta):
 	if is_active:
 		_direction = _get_movement_input()
+
+	if _direction != 0:
+		_is_facing_left = _direction == -1
+		_animations.flip_h = _is_facing_left
+
+func _physics_process(delta):
+	
+	if is_active:
 		_get_jump_input()
 		_get_dash_input()
-
 		_move(delta)
 	else:
 		velocity.x = 0
@@ -52,11 +60,9 @@ func _physics_process(delta):
 	if velocity.y >= _max_fall_velocity:
 		velocity.y = _max_fall_velocity
 
-	if _direction != 0:
-		_animations.flip_h = _direction == -1
-		if is_on_floor():
-			_current_energy -= _walking_energy_consumption * delta
-			energy_updated.emit(_current_energy)
+	if _direction != 0 && is_on_floor():
+		_current_energy -= _walking_energy_consumption * delta
+		energy_updated.emit(_current_energy)
 
 	if _current_energy <= 0:
 		_current_energy = 0
@@ -131,8 +137,8 @@ func _get_dash_input() -> void:
 
 func _dash() -> void:
 	_is_dashing = true
-	if _direction == 0:
-		velocity.x += _dash_velocity
+	if _is_facing_left:
+		velocity.x -= _dash_velocity
 	else:
-		velocity.x += _dash_velocity * _direction
+		velocity.x += _dash_velocity
 #endregion
