@@ -8,7 +8,8 @@ signal energy_updated(new_energy: float)
 @export var _max_acceleration: float = 60.0
 
 @export_subgroup("Dashing")
-@export var _dash_velocity: float = 500.0
+@export var _dash_distance: float = 120.0
+@export var _dash_duration: float = 0.2
 
 @export_subgroup("Energy")
 @export var _max_energy: float = 100
@@ -50,11 +51,13 @@ func _physics_process(delta):
 	if is_active:
 		_get_jump_input()
 		_get_dash_input()
-		_move(delta)
+
+		if !_is_dashing:
+			_move(delta)
 	else:
 		velocity.x = 0
 	
-	if !is_on_floor():
+	if !is_on_floor() && !_is_dashing:
 		velocity.y += _get_gravity() * delta
 
 	if velocity.y >= _max_fall_velocity:
@@ -136,9 +139,15 @@ func _get_dash_input() -> void:
 		_dash()
 
 func _dash() -> void:
+	# Account for the 14 % increase in dash distance that is caused by something.
+	const DASH_VELOCITY_OFFSET = 0.861
+	var dash_velocity = (_dash_distance / _dash_duration) * DASH_VELOCITY_OFFSET
 	_is_dashing = true
+	velocity.y = 0
 	if _is_facing_left:
-		velocity.x -= _dash_velocity
+		velocity.x = -dash_velocity
 	else:
-		velocity.x += _dash_velocity
+		velocity.x = dash_velocity
+	await get_tree().create_timer(_dash_duration).timeout
+	_is_dashing = false
 #endregion
