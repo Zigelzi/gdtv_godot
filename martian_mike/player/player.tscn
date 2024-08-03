@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bmy6lrkpv4bit" path="res://player/Fall (32x32).png" id="2_d18yr"]
 [ext_resource type="Texture2D" uid="uid://cojhrna0r2fca" path="res://player/Run (32x32).png" id="2_lv1hk"]
 [ext_resource type="Texture2D" uid="uid://dai3tijxfxbe2" path="res://player/Jump (32x32).png" id="3_xyyvn"]
+[ext_resource type="Shape2D" uid="uid://chd0drxtssie8" path="res://player/player_collision_shape.tres" id="6_1i7xi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ertbj"]
 atlas = ExtResource("1_gq266")
@@ -196,9 +197,6 @@ animations = [{
 "speed": 20.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvdlp"]
-size = Vector2(20, 26)
-
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 collision_mask = 13
@@ -216,7 +214,15 @@ animation = &"fall"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -13)
-shape = SubResource("RectangleShape2D_tvdlp")
+shape = ExtResource("6_1i7xi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_bottom = 150
+
+[node name="HazardDetection" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardDetection"]
+position = Vector2(0, -13)
+shape = ExtResource("6_1i7xi")

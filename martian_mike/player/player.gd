@@ -23,6 +23,7 @@ signal energy_updated(new_energy: float)
 @export var _jump_distance_to_descent: float = 40.0 # px
 
 @onready var _animations: AnimatedSprite2D = $AnimatedSprite2D
+@onready var _hazard_detection: Area2D = $HazardDetection
 @onready var _jump_velocity: float = ((2.0 * _jump_height * _max_movement_speed) / _jump_distance_to_peak) * -1.0
 @onready var _jump_gravity: float = ((-2.0 * _jump_height * (_max_movement_speed * _max_movement_speed)) / (_jump_distance_to_peak * _jump_distance_to_peak)) * -1.0
 @onready var _fall_gravity: float = ((-2.0 * _jump_height * (_max_movement_speed * _max_movement_speed)) / (_jump_distance_to_descent * _jump_distance_to_descent)) * -1.0
@@ -35,6 +36,8 @@ var _is_facing_left: bool = false
 var _direction: int = 0
 
 func _ready():
+	_hazard_detection.body_entered.connect(_on_hazard_body_entered)
+
 	_current_energy = _max_energy
 	energy_updated.emit(_current_energy)
 
@@ -73,6 +76,9 @@ func _physics_process(delta):
 
 	_update_animations(_direction)
 	move_and_slide()
+
+func _on_hazard_body_entered(_body: Node2D) -> void:
+	reset()
 
 func _get_movement_input() -> int:
 	var input: float = Input.get_axis("move_left", "move_right")
