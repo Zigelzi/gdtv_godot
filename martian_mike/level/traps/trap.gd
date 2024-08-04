@@ -7,4 +7,4 @@ func _ready():
 
 func _on_player_body_entered(body: Node2D) -> void:
     if body is Player:
-        body.reset()
+        body.die()

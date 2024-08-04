@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 signal energy_updated(new_energy: float)
+signal died
 
 @export_subgroup("Movement")
 @export var _max_movement_speed: int = 200
@@ -30,7 +31,7 @@ signal energy_updated(new_energy: float)
 
 var _current_energy: float = -1.0
 var start_position: Vector2 = Vector2.ZERO
-var is_active: bool = true
+var _is_active: bool = true
 var _is_dashing: bool = false
 var _is_facing_left: bool = false
 var _direction: int = 0
@@ -42,7 +43,7 @@ func _ready():
 	energy_updated.emit(_current_energy)
 
 func _process(_delta):
-	if is_active:
+	if _is_active:
 		_direction = _get_movement_input()
 
 	if _direction != 0:
@@ -51,7 +52,7 @@ func _process(_delta):
 
 func _physics_process(delta):
 	
-	if is_active:
+	if _is_active:
 		_get_jump_input()
 		_get_dash_input()
 
@@ -72,13 +73,14 @@ func _physics_process(delta):
 
 	if _current_energy <= 0:
 		_current_energy = 0
-		reset()
+		energy_updated.emit(_current_energy)
+		die()
 
 	_update_animations(_direction)
 	move_and_slide()
 
 func _on_hazard_body_entered(_body: Node2D) -> void:
-	reset()
+	die()
 
 func _get_movement_input() -> int:
 	var input: float = Input.get_axis("move_left", "move_right")
@@ -89,6 +91,15 @@ func _move(delta: float) -> void:
 	var desired_velocity = _direction * _max_movement_speed
 	var max_speed_change = _max_acceleration * delta
 	velocity.x = move_toward(velocity.x, desired_velocity, max_speed_change)
+
+func die() -> void:
+	velocity = Vector2.ZERO
+	AudioPlayer.play_sfx("hurt")
+	died.emit()
+
+func disable() -> void:
+	_is_active = false
+	_direction = 0
 
 #region Jumping
 
@@ -125,13 +136,6 @@ func set_start_position(new_position: Vector2) -> void:
 func bounce(force: float) -> void:
 	velocity.y = -force
 	AudioPlayer.play_sfx("jump")
-
-func reset() -> void:
-	is_active = true
-	global_position = start_position
-	velocity = Vector2.ZERO
-	_current_energy = _max_energy
-	AudioPlayer.play_sfx("hurt")
 
 #region Energy
 func grant_energy(amount: float) -> void:

@@ -5,7 +5,6 @@ extends Node2D
 @export var _next_level: PackedScene
 @export var _level_time: float = 20
 
-@onready var _death_zone: Area2D = $DeathZone
 @onready var _end_point: Area2D = $LevelStartEndPoints/EndPoint
 @onready var _start_point: Area2D = $LevelStartEndPoints/StartPoint
 @onready var _ui_layer: UiControl = $UILayer
@@ -13,7 +12,6 @@ extends Node2D
 var _level_timer: Timer
 
 func _ready():
-	_death_zone.body_entered.connect(_on_player_body_entered)
 	_end_point.end_reached.connect(_on_player_end_reached)
 	_spawn_player()
 	
@@ -30,11 +28,6 @@ func _process(_delta):
 
 	# _ui_layer.set_time_label(_level_timer.time_left)
 
-func _on_player_body_entered(body: Node2D) -> void:
-	# _level_timer.start()
-	if body is Player:
-		body.reset()
-	
 func _on_player_end_reached() -> void:
 	# _level_timer.paused = true
 	if _next_level:
@@ -50,7 +43,11 @@ func _spawn_player() -> void:
 	instantiated_player.set_start_position(_start_point.global_position)
 	instantiated_player.global_position = _start_point.global_position
 	instantiated_player.energy_updated.connect(_ui_layer.on_player_energy_updated)
+	instantiated_player.died.connect(_on_player_died)
 	add_child(instantiated_player)
+
+func _on_player_died() -> void:
+	get_tree().reload_current_scene()
 
 func spawn_level_timer() -> void:
 	_level_timer = Timer.new()

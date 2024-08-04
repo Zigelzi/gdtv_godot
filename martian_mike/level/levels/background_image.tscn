@@ -7,8 +7,6 @@
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
 motion_mirroring = Vector2(540, 0)
 
-[node name="Sprite2D2" type="Sprite2D" parent="ParallaxLayer"]
-
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
 texture_repeat = 2
 scale = Vector2(0.266602, 0.266602)

@@ -9,6 +9,6 @@ func _ready():
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
-		body.is_active = false
+		body.disable()
 		_animated_sprite.play("pressed")
 		end_reached.emit()
