@@ -36,6 +36,12 @@ var _is_dashing: bool = false
 var _is_facing_left: bool = false
 var _direction: int = 0
 
+# DEBUG & PROTOTYPING
+
+var _db_is_jumping: bool = false
+var _db_is_falling: bool = false
+var _db_start_pos: Vector2 = Vector2.ZERO
+
 func _ready():
 	_hazard_detection.body_entered.connect(_on_hazard_body_entered)
 
@@ -76,6 +82,17 @@ func _physics_process(delta):
 		energy_updated.emit(_current_energy)
 		die()
 
+	
+	if _db_is_jumping && is_on_floor() && _db_is_falling:
+		var jump_distance: float = abs(_db_start_pos.x - global_position.x)
+		print(jump_distance)
+		_db_is_jumping = false
+
+	if velocity.y > 0:
+		_db_is_falling = true
+	else:
+		_db_is_falling = false
+
 	_update_animations(_direction)
 	move_and_slide()
 
@@ -112,6 +129,9 @@ func _jump() -> void:
 	_current_energy -= _jump_energy_consumption
 	energy_updated.emit(_current_energy)
 	AudioPlayer.play_sfx("jump")
+
+	_db_is_jumping = true
+	_db_start_pos = global_position
 
 func _get_gravity() -> float:
 	return _jump_gravity if velocity.y < 0 else _fall_gravity

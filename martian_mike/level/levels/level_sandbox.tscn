@@ -703,7 +703,7 @@ layer_0/tile_data = PackedInt32Array(262153, 458752, 2, 196617, 458752, 1, 13108
 position = Vector2(0, 0)
 
 [node name="EndPoint" parent="LevelStartEndPoints" index="1"]
-position = Vector2(245, 1)
+position = Vector2(1487, 1)
 
 [node name="Objects" type="Node2D" parent="."]
 
