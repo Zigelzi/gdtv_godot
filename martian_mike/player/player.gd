@@ -33,6 +33,7 @@ var _current_energy: float = -1.0
 var start_position: Vector2 = Vector2.ZERO
 var _is_active: bool = true
 var _is_dashing: bool = false
+var _is_dash_available: bool = true
 var _is_facing_left: bool = false
 var _direction: int = 0
 
@@ -82,17 +83,15 @@ func _physics_process(delta):
 		energy_updated.emit(_current_energy)
 		die()
 
-	
-	if _db_is_jumping && is_on_floor() && _db_is_falling:
-		var jump_distance: float = abs(_db_start_pos.x - global_position.x)
-		print(jump_distance)
-		_db_is_jumping = false
-
 	if velocity.y > 0:
 		_db_is_falling = true
 	else:
 		_db_is_falling = false
 
+	if is_on_floor() && !_is_dash_available:
+		_is_dash_available = true
+		
+	debug_print_jump_distance()
 	_update_animations(_direction)
 	move_and_slide()
 
@@ -136,6 +135,12 @@ func _jump() -> void:
 func _get_gravity() -> float:
 	return _jump_gravity if velocity.y < 0 else _fall_gravity
 
+func debug_print_jump_distance():
+	if _db_is_jumping && is_on_floor() && _db_is_falling:
+		var jump_distance: float = abs(_db_start_pos.x - global_position.x)
+		print(jump_distance)
+		_db_is_jumping = false
+
 #endregion
 
 func _update_animations(direction: float) -> void:
@@ -165,7 +170,7 @@ func grant_energy(amount: float) -> void:
 
 # region Dashing
 func _get_dash_input() -> void:
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash") && _is_dash_available:
 		_dash()
 
 func _dash() -> void:
@@ -173,6 +178,7 @@ func _dash() -> void:
 	const DASH_VELOCITY_OFFSET = 0.861
 	var dash_velocity = (_dash_distance / _dash_duration) * DASH_VELOCITY_OFFSET
 	_is_dashing = true
+	_is_dash_available = false
 	velocity.y = 0
 	if _is_facing_left:
 		velocity.x = -dash_velocity
