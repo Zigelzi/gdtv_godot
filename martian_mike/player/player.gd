@@ -23,8 +23,12 @@ signal died
 @export var _jump_distance_to_peak: float = 40.0 # px
 @export var _jump_distance_to_descent: float = 40.0 # px
 
+@export_subgroup("Flying")
+@export var _fly_velocity: float = 200
+
 @onready var _animations: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _hazard_detection: Area2D = $HazardDetection
+@onready var _ground_detection: ShapeCast2D = $GroundDetection
 @onready var _jump_velocity: float = ((2.0 * _jump_height * _max_movement_speed) / _jump_distance_to_peak) * -1.0
 @onready var _jump_gravity: float = ((-2.0 * _jump_height * (_max_movement_speed * _max_movement_speed)) / (_jump_distance_to_peak * _jump_distance_to_peak)) * -1.0
 @onready var _fall_gravity: float = ((-2.0 * _jump_height * (_max_movement_speed * _max_movement_speed)) / (_jump_distance_to_descent * _jump_distance_to_descent)) * -1.0
@@ -122,6 +126,9 @@ func disable() -> void:
 func _get_jump_input() -> void:
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		_jump()
+	if Input.is_action_pressed("jump") && !is_on_floor():
+		if !_ground_detection.is_colliding():
+			_fly()
 
 func _jump() -> void:
 	velocity.y = _jump_velocity
@@ -186,4 +193,9 @@ func _dash() -> void:
 		velocity.x = dash_velocity
 	await get_tree().create_timer(_dash_duration).timeout
 	_is_dashing = false
+#endregion
+
+#region Flying - Rocket boots
+func _fly() -> void:
+	velocity.y = -_fly_velocity
 #endregion
