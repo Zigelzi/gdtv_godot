@@ -24,11 +24,11 @@ signal died
 @export var _jump_distance_to_descent: float = 40.0 # px
 
 @export_subgroup("Flying")
-@export var _fly_velocity: float = 200
+@export var _max_fly_acceleration: float = 200
+@export var _max_fly_speed: float = 300
 
 @onready var _animations: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _hazard_detection: Area2D = $HazardDetection
-@onready var _ground_detection: ShapeCast2D = $GroundDetection
 @onready var _jump_velocity: float = ((2.0 * _jump_height * _max_movement_speed) / _jump_distance_to_peak) * -1.0
 @onready var _jump_gravity: float = ((-2.0 * _jump_height * (_max_movement_speed * _max_movement_speed)) / (_jump_distance_to_peak * _jump_distance_to_peak)) * -1.0
 @onready var _fall_gravity: float = ((-2.0 * _jump_height * (_max_movement_speed * _max_movement_speed)) / (_jump_distance_to_descent * _jump_distance_to_descent)) * -1.0
@@ -64,7 +64,7 @@ func _process(_delta):
 func _physics_process(delta):
 	
 	if _is_active:
-		_get_jump_input()
+		_get_jump_input(delta)
 		_get_dash_input()
 
 		if !_is_dashing:
@@ -123,12 +123,11 @@ func disable() -> void:
 
 #region Jumping
 
-func _get_jump_input() -> void:
+func _get_jump_input(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		_jump()
 	if Input.is_action_pressed("jump") && !is_on_floor():
-		if !_ground_detection.is_colliding():
-			_fly()
+		_fly(delta)
 
 func _jump() -> void:
 	velocity.y = _jump_velocity
@@ -196,6 +195,8 @@ func _dash() -> void:
 #endregion
 
 #region Flying - Rocket boots
-func _fly() -> void:
-	velocity.y = -_fly_velocity
+func _fly(delta: float) -> void:
+	var desired_fly_velocity = _max_fly_speed * Vector2.UP.y
+	var max_fly_speed_change = _max_fly_acceleration * delta
+	velocity.y = move_toward(velocity.y, desired_fly_velocity, max_fly_speed_change)
 #endregion
