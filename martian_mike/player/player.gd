@@ -8,10 +8,6 @@ signal died
 @export var _max_movement_speed: int = 200
 @export var _max_acceleration: float = 60.0
 
-@export_subgroup("Dashing")
-@export var _dash_distance: float = 120.0
-@export var _dash_duration: float = 0.2
-
 @export_subgroup("Energy")
 @export var _max_energy: float = 100
 @export var _walking_energy_consumption: float = 5.0
@@ -65,7 +61,6 @@ func _physics_process(delta):
 	
 	if _is_active:
 		_get_jump_input(delta)
-		_get_dash_input()
 
 		if !_is_dashing:
 			_move(delta)
@@ -172,26 +167,6 @@ func bounce(force: float) -> void:
 func grant_energy(amount: float) -> void:
 	_current_energy = minf(_max_energy, _current_energy + amount)
 	energy_updated.emit(_current_energy)
-#endregion
-
-# region Dashing
-func _get_dash_input() -> void:
-	if Input.is_action_just_pressed("dash") && _is_dash_available:
-		_dash()
-
-func _dash() -> void:
-	# Account for the 14 % increase in dash distance that is caused by something.
-	const DASH_VELOCITY_OFFSET = 0.861
-	var dash_velocity = (_dash_distance / _dash_duration) * DASH_VELOCITY_OFFSET
-	_is_dashing = true
-	_is_dash_available = false
-	velocity.y = 0
-	if _is_facing_left:
-		velocity.x = -dash_velocity
-	else:
-		velocity.x = dash_velocity
-	await get_tree().create_timer(_dash_duration).timeout
-	_is_dashing = false
 #endregion
 
 #region Flying - Rocket boots
