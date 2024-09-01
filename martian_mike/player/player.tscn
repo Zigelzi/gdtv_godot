@@ -204,8 +204,6 @@ script = ExtResource("1_um2df")
 _max_acceleration = 2500.0
 _jump_distance_to_peak = 64.0
 _jump_distance_to_descent = 44.0
-_max_fly_acceleration = 4500.0
-_max_fly_speed = 350.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
@@ -217,7 +215,7 @@ position = Vector2(0, -13)
 shape = ExtResource("6_1i7xi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(0, -55)
+limit_bottom = 150
 
 [node name="HazardDetection" type="Area2D" parent="."]
 collision_layer = 2

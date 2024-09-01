@@ -20,7 +20,7 @@ signal died
 @export var _jump_distance_to_descent: float = 40.0 # px
 
 @export_subgroup("Flying")
-@export var _max_fly_acceleration: float = 200
+@export var _max_fly_acceleration: float = 4500
 @export var _max_fly_speed: float = 300
 
 @onready var _animations: AnimatedSprite2D = $AnimatedSprite2D
