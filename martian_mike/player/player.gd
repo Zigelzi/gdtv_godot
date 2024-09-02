@@ -24,6 +24,7 @@ signal died
 @export var _max_fly_speed: float = 300
 
 @onready var _animations: AnimatedSprite2D = $AnimatedSprite2D
+@onready var _ground_detection: ShapeCast2D = $GroundDetection
 @onready var _hazard_detection: Area2D = $HazardDetection
 @onready var _jump_velocity: float = ((2.0 * _jump_height * _max_movement_speed) / _jump_distance_to_peak) * -1.0
 @onready var _jump_gravity: float = ((-2.0 * _jump_height * (_max_movement_speed * _max_movement_speed)) / (_jump_distance_to_peak * _jump_distance_to_peak)) * -1.0
@@ -121,7 +122,7 @@ func disable() -> void:
 func _get_jump_input(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		_jump()
-	if Input.is_action_pressed("jump") && !is_on_floor():
+	if Input.is_action_pressed("jump") && _can_fly():
 		_fly(delta)
 
 func _jump() -> void:
@@ -141,6 +142,13 @@ func debug_print_jump_distance():
 		var jump_distance: float = abs(_db_start_pos.x - global_position.x)
 		print(jump_distance)
 		_db_is_jumping = false
+
+func _can_fly() -> bool:
+	if !_ground_detection.is_colliding() && velocity.y < 0:
+		return true
+	if velocity.y >= 0:
+		return true
+	return false
 
 #endregion
 

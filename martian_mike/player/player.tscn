@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dfxhqjadaltv2"]
+[gd_scene load_steps=32 format=3 uid="uid://dfxhqjadaltv2"]
 
 [ext_resource type="Texture2D" uid="uid://up8r0nh2gt16" path="res://player/Idle (32x32).png" id="1_gq266"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_um2df"]
@@ -197,13 +197,20 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lx0um"]
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_um2df")
 _max_acceleration = 2500.0
+_walking_energy_consumption = 0.0
+_jump_energy_consumption = 0.0
+_max_fall_velocity = 400.0
 _jump_distance_to_peak = 64.0
-_jump_distance_to_descent = 44.0
+_jump_distance_to_descent = 58.0
+_max_fly_acceleration = 9000.0
+_max_fly_speed = 250.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
@@ -224,3 +231,7 @@ collision_mask = 64
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HazardDetection"]
 position = Vector2(0, -13)
 shape = ExtResource("6_1i7xi")
+
+[node name="GroundDetection" type="ShapeCast2D" parent="."]
+shape = SubResource("RectangleShape2D_lx0um")
+target_position = Vector2(0, 30)
