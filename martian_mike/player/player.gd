@@ -19,12 +19,7 @@ signal died
 @export var _jump_distance_to_peak: float = 40.0 # px
 @export var _jump_distance_to_descent: float = 40.0 # px
 
-@export_subgroup("Flying")
-@export var _max_fly_acceleration: float = 4500
-@export var _max_fly_speed: float = 300
-
 @onready var _animations: AnimatedSprite2D = $AnimatedSprite2D
-@onready var _ground_detection: ShapeCast2D = $GroundDetection
 @onready var _hazard_detection: Area2D = $HazardDetection
 @onready var _jump_velocity: float = ((2.0 * _jump_height * _max_movement_speed) / _jump_distance_to_peak) * -1.0
 @onready var _jump_gravity: float = ((-2.0 * _jump_height * (_max_movement_speed * _max_movement_speed)) / (_jump_distance_to_peak * _jump_distance_to_peak)) * -1.0
@@ -33,8 +28,6 @@ signal died
 var _current_energy: float = -1.0
 var start_position: Vector2 = Vector2.ZERO
 var _is_active: bool = true
-var _is_dashing: bool = false
-var _is_dash_available: bool = true
 var _is_facing_left: bool = false
 var _direction: int = 0
 
@@ -61,14 +54,12 @@ func _process(_delta):
 func _physics_process(delta):
 	
 	if _is_active:
-		_get_jump_input(delta)
-
-		if !_is_dashing:
-			_move(delta)
+		_get_jump_input()
+		_move(delta)
 	else:
 		velocity.x = 0
 	
-	if !is_on_floor() && !_is_dashing:
+	if !is_on_floor():
 		velocity.y += _get_gravity() * delta
 
 	if velocity.y >= _max_fall_velocity:
@@ -87,9 +78,6 @@ func _physics_process(delta):
 		_db_is_falling = true
 	else:
 		_db_is_falling = false
-
-	if is_on_floor() && !_is_dash_available:
-		_is_dash_available = true
 		
 	debug_print_jump_distance()
 	_update_animations(_direction)
@@ -119,11 +107,9 @@ func disable() -> void:
 
 #region Jumping
 
-func _get_jump_input(delta: float) -> void:
+func _get_jump_input() -> void:
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		_jump()
-	if Input.is_action_pressed("jump") && _can_fly():
-		_fly(delta)
 
 func _jump() -> void:
 	velocity.y = _jump_velocity
@@ -142,13 +128,6 @@ func debug_print_jump_distance():
 		var jump_distance: float = abs(_db_start_pos.x - global_position.x)
 		print(jump_distance)
 		_db_is_jumping = false
-
-func _can_fly() -> bool:
-	if !_ground_detection.is_colliding() && velocity.y < 0:
-		return true
-	if velocity.y >= 0:
-		return true
-	return false
 
 #endregion
 
@@ -175,11 +154,4 @@ func bounce(force: float) -> void:
 func grant_energy(amount: float) -> void:
 	_current_energy = minf(_max_energy, _current_energy + amount)
 	energy_updated.emit(_current_energy)
-#endregion
-
-#region Flying - Rocket boots
-func _fly(delta: float) -> void:
-	var desired_fly_velocity = _max_fly_speed * Vector2.UP.y
-	var max_fly_speed_change = _max_fly_acceleration * delta
-	velocity.y = move_toward(velocity.y, desired_fly_velocity, max_fly_speed_change)
 #endregion
