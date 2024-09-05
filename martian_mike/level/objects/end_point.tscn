@@ -87,6 +87,7 @@ collision_mask = 2
 script = ExtResource("1_gwvsh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_esi7r")
 animation = &"idle"
 autoplay = "idle"
@@ -94,6 +95,7 @@ frame_progress = 0.631579
 speed_scale = 0.6
 
 [node name="Platform" type="StaticBody2D" parent="."]
+position = Vector2(0, -32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
 position = Vector2(0, 28)
@@ -108,5 +110,5 @@ position = Vector2(17, 24)
 polygon = PackedVector2Array(0, 8, 0, 0, 10, 8)
 
 [node name="DetectionArea" type="CollisionShape2D" parent="."]
-position = Vector2(0, 14)
+position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_3gx4y")

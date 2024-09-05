@@ -21,8 +21,8 @@ AudioPlayer="*res://audio/audio_player.tscn"
 
 [display]
 
-window/size/viewport_width=495
-window/size/viewport_height=270
+window/size/viewport_width=586
+window/size/viewport_height=320
 window/size/window_width_override=1485
 window/size/window_height_override=810
 window/stretch/mode="canvas_items"

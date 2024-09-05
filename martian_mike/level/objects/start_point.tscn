@@ -139,17 +139,18 @@ size = Vector2(55, 53)
 collision_mask = 2
 
 [node name="Platform" type="StaticBody2D" parent="."]
-position = Vector2(11, 28)
+position = Vector2(11, -4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
 shape = SubResource("RectangleShape2D_b47q5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_87qm5")
 animation = &"swing"
 autoplay = "swing"
 frame_progress = 0.509261
 
 [node name="DetectionArea" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 5.5)
+position = Vector2(0, -26.5)
 shape = SubResource("RectangleShape2D_0yji5")

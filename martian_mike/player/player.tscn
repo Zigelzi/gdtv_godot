@@ -218,7 +218,8 @@ position = Vector2(0, -13)
 shape = ExtResource("6_1i7xi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-limit_bottom = 150
+limit_top = -256
+limit_bottom = 64
 
 [node name="HazardDetection" type="Area2D" parent="."]
 collision_layer = 2
