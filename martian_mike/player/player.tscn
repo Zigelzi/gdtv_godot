@@ -218,6 +218,7 @@ position = Vector2(0, -13)
 shape = ExtResource("6_1i7xi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -96
 limit_top = -256
 limit_bottom = 64
 
