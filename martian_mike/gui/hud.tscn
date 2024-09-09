@@ -4,6 +4,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_rrvyk"]
 font = ExtResource("1_x72g0")
+outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
 [node name="HUD" type="Control"]
@@ -16,7 +17,6 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="TimeLabel" type="Label" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -30,6 +30,7 @@ text = "TIME: 999"
 label_settings = SubResource("LabelSettings_rrvyk")
 
 [node name="EnergyLabel" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

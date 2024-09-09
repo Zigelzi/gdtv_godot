@@ -16,7 +16,7 @@ func set_next_level(scene: PackedScene) -> void:
 func set_time_label(new_time: float) -> void:
 	if !_hud_time_label: return
 
-	_hud_time_label.text = "TIME: %.0f" % new_time
+	_hud_time_label.text = "TIME: %.1f" % new_time
 
 func on_player_energy_updated(new_energy_amount: float) -> void:
 	set_energy_label(new_energy_amount)
