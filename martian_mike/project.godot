@@ -27,6 +27,12 @@ window/size/window_width_override=1485
 window/size/window_height_override=810
 window/stretch/mode="canvas_items"
 
+[file_customization]
+
+folder_colors={
+"res://level/objects/": "yellow"
+}
+
 [input]
 
 move_left={
