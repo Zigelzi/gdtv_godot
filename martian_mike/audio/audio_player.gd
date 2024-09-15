@@ -1,16 +1,17 @@
 extends Node
 class_name GameAudioPlayer
 
-var _hurt: AudioStreamWAV = preload ("./hurt.wav")
-var _jump: AudioStreamWAV = preload ("./jump.wav")
+var _hurt: AudioStreamWAV = preload("./hurt.wav")
+var _jump: AudioStreamWAV = preload("./jump.wav")
 
 func _ready():
-	disable_music_in_debug()
+	# disable_music_in_debug()
+	pass
 	
 func play_sfx(sfx_name: String) -> void:
 	var sfx_player: AudioStreamPlayer = AudioStreamPlayer.new()
 	sfx_player.name = "SFX" + sfx_name
-	sfx_player.volume_db = -22
+	sfx_player.volume_db = -12
 
 	if sfx_name == "hurt":
 		sfx_player.stream = _hurt
