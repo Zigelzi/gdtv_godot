@@ -36,6 +36,9 @@ position = Vector2(2062, 32)
 [node name="JumpPad" parent="Objects" instance=ExtResource("7_hqqij")]
 position = Vector2(248, 32)
 
+[node name="JumpPad2" parent="Objects" instance=ExtResource("7_hqqij")]
+position = Vector2(440, 32)
+
 [node name="Traps" type="Node2D" parent="."]
 
 [node name="SawbladeTrap" parent="Traps" instance=ExtResource("8_hveex")]

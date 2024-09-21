@@ -206,7 +206,7 @@ _walking_energy_consumption = 0.0
 _jump_energy_consumption = 0.0
 _max_fall_velocity = 400.0
 _jump_distance_to_peak = 64.0
-_jump_distance_to_descent = 58.0
+_jump_distance_to_descent = 42.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
