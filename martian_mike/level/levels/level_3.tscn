@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://j8wn5pjvfv0j"]
+[gd_scene load_steps=11 format=3 uid="uid://j8wn5pjvfv0j"]
 
 [ext_resource type="Script" path="res://level/levels/level.gd" id="1_1qcsr"]
 [ext_resource type="PackedScene" uid="uid://dfxhqjadaltv2" path="res://player/player.tscn" id="2_5ijct"]
 [ext_resource type="PackedScene" uid="uid://cdabxg3row7g2" path="res://gui/ui_layer.tscn" id="3_agef4"]
+[ext_resource type="PackedScene" uid="uid://c2hktb0aemqn6" path="res://level/levels/level_4.tscn" id="3_g4qtg"]
 [ext_resource type="PackedScene" uid="uid://b64mupi7bje4s" path="res://level/levels/background_image.tscn" id="4_smexf"]
 [ext_resource type="TileSet" uid="uid://bkioybqpuvup7" path="res://level/levels/terrain_tile_set.tres" id="4_wa0cr"]
 [ext_resource type="PackedScene" uid="uid://c10l2j8rhwcwo" path="res://level/objects/level_start_end_points.tscn" id="5_wklhn"]
@@ -13,6 +14,7 @@
 [node name="Level" type="Node2D"]
 script = ExtResource("1_1qcsr")
 _player_scene = ExtResource("2_5ijct")
+_next_level = ExtResource("3_g4qtg")
 
 [node name="UILayer" parent="." instance=ExtResource("3_agef4")]
 
