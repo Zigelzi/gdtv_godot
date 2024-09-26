@@ -5,7 +5,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6kgum"]
 size = Vector2(48, 8)
 
-[node name="Platform" type="StaticBody2D"]
+[node name="Platform" type="AnimatableBody2D"]
+collision_mask = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_pirc8")

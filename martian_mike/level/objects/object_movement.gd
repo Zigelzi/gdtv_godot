@@ -17,6 +17,7 @@ extends Node
 @export_group("Movement")
 @export var _is_looping: bool = false
 @export var _speed_scale: float = 1
+@export var _movement_speed: float = 100
 
 
 func _get_configuration_warnings() -> PackedStringArray:
@@ -34,5 +35,11 @@ func _ready():
     if _animation == null || _movement_path == null: return
     _movement_path.progress_ratio = 0
     _movement_path.loop = _is_looping
-    _animation.speed_scale = _speed_scale
-    _animation.play("path/move")
+
+    if !_is_looping:
+        _animation.speed_scale = _speed_scale
+        _animation.play("path/move")
+        set_process(false)
+
+func _process(delta):
+    _movement_path.progress += _movement_speed * delta

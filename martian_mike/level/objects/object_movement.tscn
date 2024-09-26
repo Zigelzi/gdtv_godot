@@ -4,3 +4,4 @@
 
 [node name="ObjectMovement" type="Node"]
 script = ExtResource("1_nmn23")
+_movement_speed = null

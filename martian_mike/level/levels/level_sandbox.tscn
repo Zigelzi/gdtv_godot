@@ -11,15 +11,15 @@
 [ext_resource type="PackedScene" uid="uid://d3ngwr3qr1cb5" path="res://level/objects/moving_platform.tscn" id="7_x2mlp"]
 [ext_resource type="PackedScene" uid="uid://dftyj7voo8nwr" path="res://level/traps/trap_spike_ball_moving.tscn" id="8_4k3s7"]
 
-[sub_resource type="Curve2D" id="Curve2D_0c07l"]
+[sub_resource type="Curve2D" id="Curve2D_lcxdd"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 160, -67)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 160, 0, 0, 0, 0, 0, 160, -128, 0, 0, 0, 0, 0, -128, 0, 0, 0, 0, 0, 0)
 }
-point_count = 2
+point_count = 5
 
-[sub_resource type="Curve2D" id="Curve2D_733sc"]
+[sub_resource type="Curve2D" id="Curve2D_x5m0q"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 118, -1)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 101, -55)
 }
 point_count = 2
 
@@ -46,20 +46,21 @@ position = Vector2(2062, 32)
 
 [node name="Objects" type="Node2D" parent="."]
 
-[node name="MovingPlatform" parent="Objects" instance=ExtResource("7_x2mlp")]
-position = Vector2(1084, -23)
+[node name="MovingPlatform2" parent="Objects" instance=ExtResource("7_x2mlp")]
+position = Vector2(1056, 0)
 
-[node name="ObjectMovement" parent="Objects/MovingPlatform" index="0"]
-_speed_scale = 0.5
+[node name="ObjectMovement" parent="Objects/MovingPlatform2" index="0"]
+_is_looping = true
 
-[node name="Platform" parent="Objects/MovingPlatform" index="1"]
-position = Vector2(33.0446, -13.8374)
+[node name="Path2D" parent="Objects/MovingPlatform2" index="1"]
+curve = SubResource("Curve2D_lcxdd")
 
-[node name="Path2D" parent="Objects/MovingPlatform" index="2"]
-curve = SubResource("Curve2D_0c07l")
+[node name="Platform" parent="Objects/MovingPlatform2/Path2D" index="0"]
+position = Vector2(101.19, 0)
 
-[node name="PathFollow2D" parent="Objects/MovingPlatform/Path2D" index="0"]
-rotation = -0.396565
+[node name="PathFollow2D" parent="Objects/MovingPlatform2/Path2D" index="1"]
+rotation = 0.0
+loop = true
 
 [node name="Traps" type="Node2D" parent="."]
 
@@ -87,25 +88,19 @@ position = Vector2(802, -96)
 [node name="SawbladeTrap7" parent="Traps" instance=ExtResource("7_75pge")]
 position = Vector2(802, -51)
 
-[node name="SpikeBallTrapPath" parent="Traps" instance=ExtResource("8_4k3s7")]
-position = Vector2(1105, 6)
-
-[node name="ObjectMovement" parent="Traps/SpikeBallTrapPath" index="0"]
-_speed_scale = 2.0
-
-[node name="Path2D" parent="Traps/SpikeBallTrapPath" index="1"]
-curve = SubResource("Curve2D_733sc")
-
-[node name="PathFollow2D" parent="Traps/SpikeBallTrapPath/Path2D" index="0"]
-position = Vector2(48.7534, -0.413164)
-rotation = -0.00847437
-progress = 48.7572
-
-[node name="AnimationPlayer" parent="Traps/SpikeBallTrapPath" index="2"]
-speed_scale = 2.0
-
 [node name="SpikeBallTrapPath2" parent="Traps" instance=ExtResource("8_4k3s7")]
 position = Vector2(1404, -4)
+
+[node name="ObjectMovement" parent="Traps/SpikeBallTrapPath2" index="0"]
+_movement_speed = 100.0
+
+[node name="Path2D" parent="Traps/SpikeBallTrapPath2" index="1"]
+curve = SubResource("Curve2D_x5m0q")
+
+[node name="PathFollow2D" parent="Traps/SpikeBallTrapPath2/Path2D" index="0"]
+position = Vector2(42.9158, -23.37)
+rotation = -0.498653
+progress = 48.8678
 
 [node name="SpikeBallTrapPath3" parent="Traps" instance=ExtResource("8_4k3s7")]
 position = Vector2(1552, 0)
@@ -123,5 +118,5 @@ rotation = 3.14159
 position = Vector2(0, 150)
 
 [editable path="LevelStartEndPoints"]
-[editable path="Objects/MovingPlatform"]
-[editable path="Traps/SpikeBallTrapPath"]
+[editable path="Objects/MovingPlatform2"]
+[editable path="Traps/SpikeBallTrapPath2"]
