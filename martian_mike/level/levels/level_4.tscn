@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c10l2j8rhwcwo" path="res://level/objects/level_start_end_points.tscn" id="6_l5k7o"]
 [ext_resource type="PackedScene" uid="uid://7sqpd3uxxu1f" path="res://level/objects/jump_pad.tscn" id="7_hqqij"]
 [ext_resource type="PackedScene" uid="uid://u318l7vpvoc2" path="res://level/death_zone.tscn" id="7_yn7hv"]
-[ext_resource type="PackedScene" uid="uid://bqphktymt4um" path="res://level/traps/sawblade_trap.tscn" id="8_hveex"]
+[ext_resource type="PackedScene" uid="uid://bqphktymt4um" path="res://level/traps/trap_sawblade.tscn" id="8_hveex"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_o1i1n")

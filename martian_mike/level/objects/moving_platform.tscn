@@ -1,18 +1,49 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0kwpah3odv2s"]
+[gd_scene load_steps=6 format=3 uid="uid://d3ngwr3qr1cb5"]
 
-[ext_resource type="Texture2D" uid="uid://0nvlseo4fwvr" path="res://level/levels/Terrain (16x16).png" id="1_k3ito"]
+[ext_resource type="PackedScene" uid="uid://d0kwpah3odv2s" path="res://level/objects/platform.tscn" id="1_er5q5"]
+[ext_resource type="PackedScene" uid="uid://bsowtvccihori" path="res://level/objects/object_movement.tscn" id="2_0u6ko"]
+[ext_resource type="AnimationLibrary" uid="uid://colxgpbb77mmn" path="res://level/objects/path.res" id="3_iueb6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6kgum"]
-size = Vector2(48, 8)
+[sub_resource type="Animation" id="Animation_1428o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
-[node name="MovingPlatform" type="StaticBody2D"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2a6mg"]
+_data = {
+"RESET": SubResource("Animation_1428o")
+}
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_k3ito")
-region_enabled = true
-region_rect = Rect2(0, 64, 48, 8)
+[node name="MovingPlatform" type="Node2D"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_6kgum")
+[node name="ObjectMovement" parent="." node_paths=PackedStringArray("_animation", "_movement_path") instance=ExtResource("2_0u6ko")]
+_animation = NodePath("../AnimationPlayer")
+_movement_path = NodePath("../Path2D/PathFollow2D")
 
-[node name="PlatformMovement" type="Node" parent="."]
+[node name="Platform" parent="." instance=ExtResource("1_er5q5")]
+
+[node name="Path2D" type="Path2D" parent="."]
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+rotation = 0.689459
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]
+remote_path = NodePath("../../../Platform")
+update_rotation = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2a6mg"),
+"path": ExtResource("3_iueb6")
+}

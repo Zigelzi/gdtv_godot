@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bqphktymt4um"]
 
-[ext_resource type="Script" path="res://level/traps/trap.gd" id="1_gn3wh"]
-[ext_resource type="Texture2D" uid="uid://b106v1usdhsia" path="res://level/traps/Saw.png" id="2_cdlt8"]
+[ext_resource type="Script" path="res://level/traps/trap.gd" id="1_lpmdt"]
+[ext_resource type="Texture2D" uid="uid://b106v1usdhsia" path="res://level/traps/Saw.png" id="2_6mnds"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pwkha"]
 radius = 16.0
@@ -44,11 +44,11 @@ _data = {
 "spin": SubResource("Animation_3k7vd")
 }
 
-[node name="SawbladeTrap" type="Node2D"]
-script = ExtResource("1_gn3wh")
+[node name="TrapSawblade" type="Node2D"]
+script = ExtResource("1_lpmdt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_cdlt8")
+texture = ExtResource("2_6mnds")
 hframes = 8
 
 [node name="Area2D" type="Area2D" parent="."]

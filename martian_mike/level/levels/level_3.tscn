@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c10l2j8rhwcwo" path="res://level/objects/level_start_end_points.tscn" id="5_wklhn"]
 [ext_resource type="PackedScene" uid="uid://u318l7vpvoc2" path="res://level/death_zone.tscn" id="6_e7f2x"]
 [ext_resource type="PackedScene" uid="uid://7sqpd3uxxu1f" path="res://level/objects/jump_pad.tscn" id="7_fjldn"]
-[ext_resource type="PackedScene" uid="uid://bqphktymt4um" path="res://level/traps/sawblade_trap.tscn" id="7_nf56n"]
+[ext_resource type="PackedScene" uid="uid://bqphktymt4um" path="res://level/traps/trap_sawblade.tscn" id="8_nwu6p"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_1qcsr")
@@ -50,19 +50,19 @@ position = Vector2(2064, 32)
 
 [node name="Traps" type="Node2D" parent="."]
 
-[node name="SawbladeTrap" parent="Traps" instance=ExtResource("7_nf56n")]
+[node name="SawbladeTrap" parent="Traps" instance=ExtResource("8_nwu6p")]
 position = Vector2(1328, -80)
 
-[node name="SawbladeTrap3" parent="Traps" instance=ExtResource("7_nf56n")]
+[node name="SawbladeTrap3" parent="Traps" instance=ExtResource("8_nwu6p")]
 position = Vector2(1328, -40)
 
-[node name="SawbladeTrap2" parent="Traps" instance=ExtResource("7_nf56n")]
+[node name="SawbladeTrap2" parent="Traps" instance=ExtResource("8_nwu6p")]
 position = Vector2(1328, -120)
 
-[node name="SawbladeTrap4" parent="Traps" instance=ExtResource("7_nf56n")]
+[node name="SawbladeTrap4" parent="Traps" instance=ExtResource("8_nwu6p")]
 position = Vector2(2168, 24)
 
-[node name="SawbladeTrap5" parent="Traps" instance=ExtResource("7_nf56n")]
+[node name="SawbladeTrap5" parent="Traps" instance=ExtResource("8_nwu6p")]
 position = Vector2(2168, -8)
 
 [node name="Pickups" type="Node2D" parent="."]
