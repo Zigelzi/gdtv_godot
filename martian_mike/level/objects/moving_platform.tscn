@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0kwpah3odv2s"]
+
+[ext_resource type="Texture2D" uid="uid://0nvlseo4fwvr" path="res://level/levels/Terrain (16x16).png" id="1_k3ito"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6kgum"]
+size = Vector2(48, 8)
+
+[node name="MovingPlatform" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_k3ito")
+region_enabled = true
+region_rect = Rect2(0, 64, 48, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6kgum")
+
+[node name="PlatformMovement" type="Node" parent="."]
