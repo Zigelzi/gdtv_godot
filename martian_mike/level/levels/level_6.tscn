@@ -19,7 +19,7 @@ point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_5aboq"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 8, 56, 0, 0, 0, 0, -72, 56, 0, 0, 0, 0, -72, 88, 0, 0, 0, 0, -136, 88)
+"points": PackedVector2Array(0, 0, 0, 0, -136, 88, 0, 0, 0, 0, -72, 88, 0, 0, 0, 0, -72, 56, 0, 0, 0, 0, 8, 56, 0, 0, 0, 0, 8, 0)
 }
 point_count = 5
 
@@ -56,13 +56,12 @@ _speed_scale = 0.6
 curve = SubResource("Curve2D_ngody")
 
 [node name="Platform" parent="Objects/MovingPlatform/Path2D" index="0"]
-position = Vector2(137.317, 0)
+position = Vector2(100.604, 0)
 scale = Vector2(1, 1)
 
 [node name="PathFollow2D" parent="Objects/MovingPlatform/Path2D" index="1"]
-position = Vector2(137.317, 0)
+position = Vector2(0, 0)
 rotation = 0.0
-progress = 137.305
 
 [node name="AnimationPlayer" parent="Objects/MovingPlatform" index="2"]
 speed_scale = 0.6
@@ -95,15 +94,14 @@ position = Vector2(760, -168)
 
 [node name="ObjectMovement" parent="Traps/TrapSpikeBallMoving" index="0"]
 _speed_scale = 0.3
-_movement_speed = 100.0
 
 [node name="Path2D" parent="Traps/TrapSpikeBallMoving" index="1"]
 curve = SubResource("Curve2D_5aboq")
 
 [node name="PathFollow2D" parent="Traps/TrapSpikeBallMoving/Path2D" index="0"]
-position = Vector2(-26.4911, 56)
-rotation = 3.14159
-progress = 90.4965
+position = Vector2(8, 46.45)
+rotation = -1.5708
+progress = 185.6
 
 [node name="AnimationPlayer" parent="Traps/TrapSpikeBallMoving" index="2"]
 speed_scale = 0.3

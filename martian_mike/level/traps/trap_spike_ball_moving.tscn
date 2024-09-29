@@ -9,6 +9,7 @@
 [node name="ObjectMovement" parent="." node_paths=PackedStringArray("_animation", "_movement_path") instance=ExtResource("3_erkr4")]
 _animation = NodePath("../AnimationPlayer")
 _movement_path = NodePath("../Path2D/PathFollow2D")
+_movement_speed = 100.0
 
 [node name="Path2D" type="Path2D" parent="."]
 

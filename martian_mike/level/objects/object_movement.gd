@@ -1,4 +1,3 @@
-@tool
 extends Node
 
 @export_group("Components")
@@ -33,7 +32,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func _ready():
     if _animation == null || _movement_path == null: return
-    _movement_path.progress_ratio = 0
     _movement_path.loop = _is_looping
 
     if !_is_looping:

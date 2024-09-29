@@ -79,7 +79,6 @@ position = Vector2(984, -232)
 
 [node name="ObjectMovement" parent="Traps/TrapSpikeBallMoving" index="0"]
 _speed_scale = 0.5
-_movement_speed = 100.0
 
 [node name="Path2D" parent="Traps/TrapSpikeBallMoving" index="1"]
 curve = SubResource("Curve2D_gtv18")
@@ -94,9 +93,6 @@ speed_scale = 0.5
 
 [node name="TrapSpikeBallMoving2" parent="Traps" instance=ExtResource("9_87yek")]
 position = Vector2(704, -120)
-
-[node name="ObjectMovement" parent="Traps/TrapSpikeBallMoving2" index="0"]
-_movement_speed = 100.0
 
 [node name="Path2D" parent="Traps/TrapSpikeBallMoving2" index="1"]
 curve = SubResource("Curve2D_uj1a4")
