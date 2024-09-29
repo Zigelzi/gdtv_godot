@@ -56,11 +56,16 @@ _speed_scale = 0.6
 curve = SubResource("Curve2D_ngody")
 
 [node name="Platform" parent="Objects/MovingPlatform/Path2D" index="0"]
-position = Vector2(106.741, 0)
+position = Vector2(137.317, 0)
+scale = Vector2(1, 1)
 
 [node name="PathFollow2D" parent="Objects/MovingPlatform/Path2D" index="1"]
-position = Vector2(0, 0)
+position = Vector2(137.317, 0)
 rotation = 0.0
+progress = 137.305
+
+[node name="AnimationPlayer" parent="Objects/MovingPlatform" index="2"]
+speed_scale = 0.6
 
 [node name="Traps" type="Node2D" parent="."]
 
@@ -96,9 +101,12 @@ _movement_speed = 100.0
 curve = SubResource("Curve2D_5aboq")
 
 [node name="PathFollow2D" parent="Traps/TrapSpikeBallMoving/Path2D" index="0"]
-position = Vector2(-47.9573, 56)
+position = Vector2(-26.4911, 56)
 rotation = 3.14159
-progress = 111.943
+progress = 90.4965
+
+[node name="AnimationPlayer" parent="Traps/TrapSpikeBallMoving" index="2"]
+speed_scale = 0.3
 
 [node name="Pickups" type="Node2D" parent="."]
 
