@@ -56,13 +56,12 @@ _is_looping = true
 curve = SubResource("Curve2D_lcxdd")
 
 [node name="Platform" parent="Objects/MovingPlatform2/Path2D" index="0"]
-position = Vector2(160, -121.295)
-scale = Vector2(1, 1)
+position = Vector2(160, -8.45658)
 
 [node name="PathFollow2D" parent="Objects/MovingPlatform2/Path2D" index="1"]
-position = Vector2(0, 0)
-rotation = 0.0
-progress = 0.0
+position = Vector2(160, -8.45658)
+rotation = -1.5708
+progress = 168.461
 loop = true
 
 [node name="MovingPlatform" parent="Objects" instance=ExtResource("7_x2mlp")]
@@ -72,13 +71,12 @@ position = Vector2(1304, -48)
 position = Vector2(-16, 56)
 
 [node name="Platform" parent="Objects/MovingPlatform/Path2D" index="0"]
-position = Vector2(90.0245, -105.029)
+position = Vector2(114.254, 44.4702)
 scale = Vector2(1, 1)
 
 [node name="PathFollow2D" parent="Objects/MovingPlatform/Path2D" index="1"]
-position = Vector2(0, 0)
-rotation = -0.86217
-progress = 0.0
+position = Vector2(114.254, 44.4702)
+progress = 122.603
 
 [node name="Traps" type="Node2D" parent="."]
 
@@ -116,9 +114,9 @@ _movement_speed = 100.0
 curve = SubResource("Curve2D_x5m0q")
 
 [node name="PathFollow2D" parent="Traps/SpikeBallTrapPath2/Path2D" index="0"]
-position = Vector2(46.412, -25.2739)
+position = Vector2(69.086, -37.6211)
 rotation = -0.498653
-progress = 52.8483
+progress = 78.6805
 
 [node name="SpikeBallTrapPath3" parent="Traps" instance=ExtResource("8_4k3s7")]
 position = Vector2(1552, 0)

@@ -55,6 +55,7 @@ func _physics_process(delta):
 	
 	if _is_active:
 		_get_jump_input()
+		_get_drop_down_input()
 		_move(delta)
 	else:
 		velocity.x = 0
@@ -91,6 +92,10 @@ func _get_movement_input() -> int:
 	
 	return int(input)
 
+func _get_drop_down_input() -> void:
+	if Input.is_action_pressed("duck") && Input.is_action_just_pressed("jump") && is_on_floor():
+		position.y += 1
+
 func _move(delta: float) -> void:
 	var desired_velocity = _direction * _max_movement_speed
 	var max_speed_change = _max_acceleration * delta
@@ -108,6 +113,7 @@ func disable() -> void:
 #region Jumping
 
 func _get_jump_input() -> void:
+	if Input.is_action_pressed("duck"): return
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		_jump()
 

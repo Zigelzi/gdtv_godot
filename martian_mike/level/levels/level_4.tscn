@@ -83,9 +83,9 @@ _movement_speed = 100.0
 curve = SubResource("Curve2D_gtv18")
 
 [node name="PathFollow2D" parent="Traps/TrapSpikeBallMoving/Path2D" index="0"]
-position = Vector2(88.6664, 0)
+position = Vector2(28.3433, 0)
 rotation = 0.0
-progress = 88.6681
+progress = 28.3614
 
 [node name="AnimationPlayer" parent="Traps/TrapSpikeBallMoving" index="2"]
 speed_scale = 0.5
@@ -100,9 +100,9 @@ _movement_speed = 100.0
 curve = SubResource("Curve2D_uj1a4")
 
 [node name="PathFollow2D" parent="Traps/TrapSpikeBallMoving2/Path2D" index="0"]
-position = Vector2(4.306, 0)
+position = Vector2(40.1777, 0)
 rotation = 0.0
-progress = 4.32634
+progress = 40.1787
 
 [node name="Pickups" type="Node2D" parent="."]
 
