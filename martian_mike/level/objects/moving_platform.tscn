@@ -1,14 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3ngwr3qr1cb5"]
+[gd_scene load_steps=6 format=3 uid="uid://d3ngwr3qr1cb5"]
 
 [ext_resource type="PackedScene" uid="uid://d0kwpah3odv2s" path="res://level/objects/platform.tscn" id="1_er5q5"]
 [ext_resource type="PackedScene" uid="uid://bsowtvccihori" path="res://level/objects/object_movement.tscn" id="2_0u6ko"]
 [ext_resource type="AnimationLibrary" uid="uid://colxgpbb77mmn" path="res://level/objects/path.res" id="3_iueb6"]
-
-[sub_resource type="Curve2D" id="Curve2D_d8d8x"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 167, 65)
-}
-point_count = 2
 
 [sub_resource type="Animation" id="Animation_1428o"]
 length = 0.001
@@ -38,16 +32,13 @@ _movement_path = NodePath("../Path2D/PathFollow2D")
 _movement_speed = 100.0
 
 [node name="Path2D" type="Path2D" parent="."]
-curve = SubResource("Curve2D_d8d8x")
 
 [node name="Platform" parent="Path2D" instance=ExtResource("1_er5q5")]
-position = Vector2(90.7606, 35.326)
 scale = Vector2(1, 1)
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(90.7606, 35.326)
+position = Vector2(136.034, 52.9474)
 rotation = 0.37118
-progress = 97.3921
 loop = false
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]
